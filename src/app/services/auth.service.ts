@@ -16,8 +16,11 @@ export class AuthService {
       .post(`${environment.baseUrl}/login`, login)
       .toPromise()
       .then((res: any)=>{
-        this.isAuthenticate = true;
+       
         console.log(res)
+        localStorage.setItem('user', JSON.stringify(login));
+        localStorage.setItem('token', res.token);
+        this.isAuthenticate = true;
         return this.isAuthenticate
       }).catch((err)=> {
         this.isAuthenticate = false;
