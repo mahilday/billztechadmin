@@ -8,8 +8,8 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { AuthGuard } from '../../services/auth.guard';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: DashboardComponent, canActivate: [AuthGuard] },
-    { path: 'user-profile',   component: UserProfileComponent, canActivate: [AuthGuard] },
+    { path: 'dashboard',      component: DashboardComponent},
+    { path: 'user-profile',   component: UserProfileComponent},
     { path: 'tables',         component: TablesComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },

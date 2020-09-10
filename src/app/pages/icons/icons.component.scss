@@ -1,0 +1,23 @@
+.btn-info{
+    box-shadow: none;
+}
+.btn{
+    border-radius: 0;
+    border:none;
+    background-color: #fff;
+    &:active, &:hover{
+        background-color:#1171ef78;
+    }
+}
+.addcolor{
+    background-color:#1171ef78;
+    color: white;
+}
+
+.btn:not(:last-child){
+    margin-right: 0;
+    border-right: 1px solid #cccccc76;
+}
+.innerlimy{
+    list-style: none;
+} 
