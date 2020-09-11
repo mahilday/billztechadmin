@@ -1,4 +1,14 @@
-.col{
+.col-5, .col{
     padding-left: 0;
     padding-right:0;
+}
+.row{
+    margin-right:0;
+    margin-left:0;
+}
+.btndose{
+    border-radius:50%;
+    &:hover, &:active{
+        color: white
+    }
 }

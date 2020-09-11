@@ -8,8 +8,23 @@ import { Component, OnInit } from '@angular/core';
 export class VaccinesComponent implements OnInit {
 
   constructor() { }
+  allDoses =[]
+  vaccine ={
+    vaccdes:{
+      givenhowquest:"How is it given?",
+      dosages: this.allDoses
+    }
+  }
+ 
+  dosage ={
+    patientdosages:{}
+  }
 
   ngOnInit(): void {
+  }
+  addDose=()=>{
+    this.allDoses.push(this.dosage)
+    console.log(this.vaccine)
   }
 
 }

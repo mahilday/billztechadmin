@@ -13,56 +13,98 @@
         <div class="card bg-secondary shadow border-0">
           <div class="card-header bg-transparent pb-5">
           <div class="card-body px-lg-5 py-lg-5">
-            <div class="text-center text-muted mb-4">
-              <small>Sign in with credentials</small>
-            </div>
             <form role="form">
               <div class="form-group mb-3">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    <span class="input-group-text"><i class="ni ni-fat-add"></i></span>
                   </div>
-                  <input class="form-control" name="name" placeholder="Vaccine name" type="text" [(ngModel)]="vaccine.vaccname">
+                  <input class="form-control" name="name" placeholder="Vaccine Name" type="text" [(ngModel)]="vaccine.vaccname">
                 </div>
               </div>
               <div class="form-group mb-3">
                 <div class="input-group input-group-alternative">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    <span class="input-group-text"><i class="ni ni-collection"></i></span>
                   </div>
                   <input class="form-control" name="firstdes" placeholder="Add description" [(ngModel)] = "vaccine.vaccdes.firstdes">
                 </div>
               </div>
-              <div class="form-group row mb-3">
+              <div class="form-group mb-3">
                 <div class="input-group col input-group-alternative">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    <span class="input-group-text"><i class="ni ni-check-bold"></i></span>
                   </div>
-                  <input class="form-control" name="firstdes" placeholder="Where is it given" [(ngModel)] = "vaccine.vaccdes.givenhowanswer">
+                  <input class="form-control" name="givenhowanswer" placeholder="Where is it given" [(ngModel)] = "vaccine.vaccdes.givenhowanswer">
                 </div>
-                <div class="input-group col input-group-alternative">
+              </div>
+              <h3 class="my-4">Add Dosages for each type of patient<i class ="ni ni-archive-2 mx-3"></i></h3>
+              <div>
+              <div class = "form-group mb-3">
+                <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                      <span class="input-group-text"><i class="ni ni-circle-08"></i></span>
                     </div>
-                    <input class="form-control" name="firstdes" placeholder="Add description" [(ngModel)] = "vaccine.vaccdes.firstdes">
+                    <input class="form-control" name="patient" placeholder="Patient Type" [(ngModel)] = "dosage.patient">
                   </div>
               </div>
-              <h3>Add Dosages for each type of patient<i class ="ni ni-archive-2 mx-3"></i></h3>
-              <div class = "form-group row mb-3">
-                <div class="input-group col input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" name="firstdes" placeholder="Add description" [(ngModel)] = "vaccine.vaccdes.firstdes">
+              <div class ="form-group row"> 
+                <div class="input-group col mr-4 input-group-alternative">
+                    
+                    <select class="form-control" name="firstdose" [(ngModel)] = "dosage.patientdosages.firstdose">
+                      <option value="firstdose" selected>First Dose</option>
+                      <option value="Day 0">Day 0</option>
+                      <option value="2 weeks">2 weeks</option>
+                      <option value="6 weeks">6 weeks</option>
+                      <option value="1 month">1 month</option>
+                      <option value="2 months">2 months</option>
+                      <option value="3 months">3 months</option>
+                      <option value="6 months">6 months</option>
+                    </select>
                   </div>
                   <div class="input-group col input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" name="firstdes" placeholder="Add description" [(ngModel)] = "vaccine.vaccdes.firstdes">
+                   
+                    <select class="form-control" name="seconddose" [(ngModel)] = "dosage.patientdosages.seconddose">
+                      <option>Second Dose</option>
+                      <option value="Day 0">Day 0</option>
+                      <option value="2 weeks">2 weeks</option>
+                      <option value="6 weeks">6 weeks</option>
+                      <option value="1 month">1 month</option>
+                      <option value="2 months">2 months</option>
+                      <option value="3 months">3 months</option>
+                      <option value="6 months">6 months</option>
+                    </select>
                   </div>
-
               </div>
+              <div class ="form-group row"> 
+                <div class="input-group col mr-4 input-group-alternative">
+                    <select class="form-control" name="thirddose" [(ngModel)] = "dosage.patientdosages.thirddose">
+                      <option selected>Third Dose</option>
+                      <option value="Day 0">Day 0</option>
+                      <option value="2 weeks">2 weeks</option>
+                      <option value="6 weeks">6 weeks</option>
+                      <option value="1 month">1 month</option>
+                      <option value="2 months">2 months</option>
+                      <option value="3 months">3 months</option>
+                      <option value="6 months">6 months</option>
+                    </select>
+                  </div>
+                  <div class="input-group col input-group-alternative">
+                    <select class="form-control" name="fourthdose" [(ngModel)] = "dosage.patientdosages.fourthdose">
+                      <option selected>Fourth Dose</option>
+                      <option value="Day 0">Day 0</option>
+                      <option value="2 weeks">2 weeks</option>
+                      <option value="6 weeks">6 weeks</option>
+                      <option value="1 month">1 month</option>
+                      <option value="2 months">2 months</option>
+                      <option value="3 months">3 months</option>
+                      <option value="6 months">6 months</option>
+                    </select>
+                  </div>
+                 
+              </div>
+              <button class="btn btn-outline-info btndose rounded-top text-info" (click) ="addDose()">Add Dose</button>
+            </div>
               <div class="text-center">
                 <button type="button"  class="btn btn-primary px-4 mt-5">Submit</button>
               </div>
