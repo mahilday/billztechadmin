@@ -21,13 +21,21 @@ export class AuthService {
         console.log(res)
         localStorage.setItem('user', JSON.stringify(login));
         localStorage.setItem('token', res.token);
-        this.router.navigateByUrl('/dashboard')
+        if(res.result.role === "admin"){
+          this.router.navigateByUrl('/')
+        } else{
+          this.router.navigateByUrl('/maps')
+        }
         this.isAuthenticate = true;
         return this.isAuthenticate
       }).catch((err)=> {
         this.isAuthenticate = false;
         return this.isAuthenticate
       })
+  }
+
+  loggedIn(){
+    return !!localStorage.getItem('token')
   }
   
 }
