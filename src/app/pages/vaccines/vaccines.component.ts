@@ -34,10 +34,9 @@ export class VaccinesComponent implements OnInit {
   ngOnInit(): void {
   }
   addDose=(e, dose: NgForm)=>{
-    this.allDoses.push(dose.value)
+    this.allDoses.push(this.dosage)
     // dose.resetForm = function(){ return null}
     console.log(this.allDoses, dose)
-    dose.reset()
   }
   Brand =(e, brand: NgForm)=>{
     this.niceBrands.push(brand.value);

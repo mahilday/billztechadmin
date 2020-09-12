@@ -48,7 +48,7 @@
                 <th scope="col" class="text-center">Payment Status</th>
               </tr>
               </thead>
-              <tr *ngFor = "let data of myselfData; let i = index">
+              <tr *ngFor = "let data of myselfData; let i = index" (click)="clickNext(data)">
                 <td class="text-center">{{data._id}}</td>
                 <td class="text-center">{{data.profile.firstname + " " + data.profile.lastname}}</td>
                 <td class="text-center"><ul class="innertablemy"><li class="innerlimy" *ngFor ="let vacc of data.vaccine">{{vacc.name}}</li></ul></td>
@@ -66,7 +66,7 @@
                     <th scope="col" class="text-center">Payment Status</th>
                   </tr>
                   </thead>
-                  <tr *ngFor = "let data of famData; let i = index">
+                  <tr *ngFor = "let data of famData; let i = index" (click)="clickNext(data)">
                     <td class="text-center">{{data._id}}</td>
                     <td class="text-center"><ul class="innertablemy"><li class="innerlimy" *ngFor ="let name of data.profile">{{name.firstname + ' ' + name.lastname}}</li></ul></td>
                     <td class="text-center"><ul class="innertablemy"><li class="innerlimy" *ngFor ="let vacc of data.profile">{{vacc.email}}</li></ul></td>
@@ -84,7 +84,7 @@
                         <th scope="col" class="text-center">Number of Staff</th>
                       </tr>
                       </thead>
-                      <tr *ngFor = "let data of corpData; let i = index">
+                      <tr *ngFor = "let data of corpData; let i = index" (click)="clickNext(data)">
                         <td class="text-center">{{data._id}}</td>
                         <td class="text-center">{{data.fullname}}</td>
                         <td class="text-center">{{data.email}}</td>

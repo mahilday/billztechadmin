@@ -14,5 +14,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'tables',         component: TablesComponent },
     { path: 'icons',          component: IconsComponent, canActivate: [AuthGuard] },
     { path: 'maps',           component: MapsComponent },
-    { path: 'vaccines',       component: VaccinesComponent }
+    { path: 'vaccines',       component: VaccinesComponent },
+    { path: 'icons/:id',       component: MapsComponent}
 ];

@@ -11,19 +11,13 @@ export class GetDataService{
 
   }
 
-  myselfData = null
 
- getMyself(){
-    this.http
-      .get(`${environment.baseUrl}/my-form`)
-      .toPromise()
-      .then((res: any)=>{
-        console.log(res) 
-        this.myselfData = res.result
-        console.log(this.myselfData)
-      }).catch((err)=> {
-        console.log('Error', err)
-      })
-  }
-  
+ myselfBool = null
+ familyBool = null
+ corpBool = null
+
+
+  Myself={}
+  Family ={}
+  Corporate ={}
 }

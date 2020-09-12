@@ -15,6 +15,7 @@ import { ComponentsModule } from './components/components.module';
 import {AuthService} from './services/auth.service'
 import {GetDataService} from './services/getdata.service'
 import {AuthGuard} from './services/auth.guard';
+import { NurseLayoutComponent } from './layouts/nurse-layout/nurse-layout/nurse-layout.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {AuthGuard} from './services/auth.guard';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    NurseLayoutComponent,
   ],
   providers: [AuthGuard, AuthService, GetDataService],
   bootstrap: [AppComponent]
