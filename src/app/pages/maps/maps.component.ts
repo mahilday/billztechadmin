@@ -65,9 +65,10 @@ export class MapsComponent implements OnInit {
             this.toastr.error("Booking Error Notification", 'Error')
           })
       }
-      onSwitch(nurse){
+      onSwitch(nurse, myself){
         if(confirm('Are you sure you want to assign the booking to ' + nurse.name + ' who lives in ' + nurse.localgovt + ', ' + nurse.state)){
           nurse.bookings.push(this.myself);
+          nurse.newassigned_id = myself._id
           this.http
             .put(`${environment.baseUrl}/updatenursebooking`, nurse)
             .toPromise()

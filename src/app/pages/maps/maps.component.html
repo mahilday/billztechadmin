@@ -86,7 +86,7 @@
                   autofocus
                 />
                 <a
-                  (click)="onSwitch(nurse)"
+                  (click)="onSwitch(nurse, myself)"
                   *ngFor="let nurse of allNurses | appFilter: searchText"
                   class="dropdown-item"
                 >
