@@ -7,3 +7,44 @@
     z-index: 200;
     height:max-content;
 }
+li{
+    list-style: none;
+}
+.assign{
+    width: max-content;
+    padding:10px 20px;
+    border-radius: 30px;
+    background-color: rgb(12, 146, 199);
+    border: none;
+    color: white;
+    &:focus{
+        outline: none;
+    }
+}
+.drop{
+    height: 30vh;
+    overflow-y:scroll;
+}
+.padlt{
+    padding-left: 3rem;
+}
+$breakpoint-phone: 500px;
+
+@media screen and (max-width: $breakpoint-phone){
+    .myself{
+        grid-template-columns: 100%;
+    }
+    .prof{
+        border-right: none;
+        margin: 5% 0;
+    }
+    .padlt{
+        padding-left:0;
+    }
+    .assign{
+        margin:10% 0;
+    }
+    .drop{
+        margin:6vh 40vw;
+    }
+}

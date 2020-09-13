@@ -23,13 +23,28 @@
           <p><b>Address: </b>{{myself.profile.address.address + '(' + myself.profile.address.zipcode + ')' }}</p>
           <h4>Payment Status: {{myself.paymentStatus}}</h4>
         </div>
-          <div class="px-5">
+          <div class="padlt">
             <h2 class ="my-4">Vaccines chosen</h2>
           <div *ngFor="let vacc of myself.vaccine; let i = index">
             <h4><b>Vaccine Name: </b>{{vacc.name}}</h4>
             <small class = "text-muted"><b>Vaccine brand: </b>{{myself.brandschosen[i].name + ' ' + myself.brandschosen[i].price}}</small>
           </div>
           <h4>Total Price: {{myself.totalprice}}</h4>
+          </div>
+          <ul class="nav align-items-center zindex">
+            <li class="nav-item" ngbDropdown placement="bottom-right">
+                <input type="submit" class="assign" ngbDropdownToggle value="Assign To">
+              <div class="dropdown-menu-arrow drop dropdown-menu-right" ngbDropdownMenu >
+                <a routerLinkActive="active" [routerLink]="['/user-profile']" *ngFor = "let nurse of allNurses" class="dropdown-item">
+                  <i class="ni ni-calendar-grid-58"></i>
+                  <span>{{nurse.name}}</span>
+                </a>
+              </div>
+                
+            </li>
+          </ul>
+          <div class="dropdown-menu-arrow dropdown-menu-right" *ngIf ="show">
+         
           </div>
         </div>
         <div style="min-height: 600px; padding: 5%;" *ngIf ="getdata.familyBool">
