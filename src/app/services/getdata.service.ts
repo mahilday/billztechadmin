@@ -15,7 +15,7 @@ export class GetDataService{
  myselfBool = null
  familyBool = null
  corpBool = null
-
+ assigned = false
 
   Myself={}
   Family ={}

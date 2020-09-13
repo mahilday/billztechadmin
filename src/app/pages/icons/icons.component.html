@@ -46,6 +46,7 @@
                 <th scope="col" class="text-center">Vaccines</th>
                 <th scope="col" class="text-center">Total Price</th>
                 <th scope="col" class="text-center">Payment Status</th>
+                <th scope="col" class="text-center">Vaccination Status</th>
               </tr>
               </thead>
               <tr *ngFor = "let data of myselfData; let i = index" (click)="clickNext(data)">
@@ -54,6 +55,7 @@
                 <td class="text-center"><ul class="innertablemy"><li class="innerlimy" *ngFor ="let vacc of data.vaccine">{{vacc.name}}</li></ul></td>
                 <td class="text-center">{{data.totalprice}}</td>
                 <td class="text-center">{{data.paymentStatus}}</td>
+                  <td style="border-radius:10rem;" class="text-center padno  {{switchClass(data)}}">{{data.vaccinationStatus | uppercase}}</td>
               </tr>
               </table>
               <table *ngIf ="family" class="table align-items-center table-flush">

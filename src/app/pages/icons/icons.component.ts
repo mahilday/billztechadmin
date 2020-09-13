@@ -66,6 +66,26 @@ export class IconsComponent implements OnInit {
       console.log('Error', err)
     })
   }
+  assigned = false
+  switchClass(data){
+    switch (data.vaccinationStatus) {
+      case 'assigned':
+        this.assigned = true
+        return 'text-info'
+        break;
+      case 'unassigned':
+        this.assigned = false
+        return 'text-danger'
+        break;
+      case 'done':
+        this.assigned = false
+        return 'text-success'
+        break;
+      default: 'badge'
+        break;
+    }
+    this.getdata.assigned = this.assigned
+  }
 
   getFam(){
     this.http
