@@ -50,6 +50,23 @@
               </div>
             </div>
             <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <select class="form-control" name ="state" (change) ="getLga()" [(ngModel)]="register.state" >
+                  <option selected>Select State</option>
+                  <option value="{{state}}" *ngFor ="let state of states">{{state}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <select class="form-control" [disabled]="lgaLoading" name ="localgovt" [(ngModel)]="register.localgovt" >
+                  <option selected>Select LGA</option>
+                  <option value="{{local.name}}" *ngFor ="let local of localgovt">{{local.name}}</option>
+                </select>
+              </div>
+              <small *ngIf ="lgaLoading">Please wait ...</small>
+            </div>
+            <div class="form-group">
               <div class="input-group input-group-alternative">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>

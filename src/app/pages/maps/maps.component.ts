@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GetDataService } from "../../services/getdata.service"
 import {HttpClient} from '@angular/common/http'
 import { environment } from 'src/environments/environment';
+import { ToastrService, ToastContainerDirective } from 'ngx-toastr';  
 declare const google: any;
 
 @Component({
@@ -10,8 +11,11 @@ declare const google: any;
   styleUrls: ['./maps.component.scss']
 })
 export class MapsComponent implements OnInit {
+  // @ViewChild(ToastContainerDirective, { static: true })
+  // toastContainer: ToastContainerDirective;
 
-  constructor(private getdata: GetDataService, private http: HttpClient) { }
+
+  constructor(private getdata: GetDataService, private http: HttpClient, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.Data()
@@ -20,6 +24,7 @@ export class MapsComponent implements OnInit {
       myself = {}
       family = {}
       corp ={}
+      searchText =''
       allNurses =[]
 
       Data(){
@@ -42,9 +47,37 @@ export class MapsComponent implements OnInit {
         console.log(this.family);
         console.log(this.corp)
       }
-      show = false;
+      show = true;
       switch(){
-        this.show = true;
+        this.show = false;
+        console.log(this.show)
+      }
+      updateMy(){
+        this.http
+          .put(`${environment.baseUrl}/updatemyadmin`, this.myself)
+          .toPromise()
+          .then((res)=>{
+            this.show = true;
+            this.toastr.success("Booking update successful")
+            console.log(res, this.myself)
+          })
+          .catch((err)=>{
+            this.toastr.error("Booking Error Notification", 'Error')
+          })
+      }
+      onSwitch(nurse){
+        if(confirm('Are you sure you want to assign the booking to ' + nurse.name + ' who lives in ' + nurse.localgovt + ', ' + nurse.state)){
+          nurse.bookings.push(this.myself);
+          this.http
+            .put(`${environment.baseUrl}/updatenursebooking`, nurse)
+            .toPromise()
+            .then((res)=>{
+              this.toastr.success("Booking update successful")
+            })
+            .catch(err =>{
+              this.toastr.error("Booking Error Notification", 'Error')
+            })
+        }
       }
       getNurses(){
         this.http

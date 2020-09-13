@@ -13,6 +13,9 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { VaccinesComponent } from '../../pages/vaccines/vaccines.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {FilterPipe} from '../../pipes/filter.pipe'
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -23,7 +26,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
-    ClipboardModule
+    ClipboardModule,
+    // BrowserAnimationsModule,
+    
   ],
   declarations: [
     DashboardComponent,
@@ -31,7 +36,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TablesComponent,
     IconsComponent,
     MapsComponent, 
-    VaccinesComponent
+    VaccinesComponent,
+    FilterPipe
   ]
 })
 

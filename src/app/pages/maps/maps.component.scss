@@ -23,10 +23,28 @@ li{
 }
 .drop{
     height: 30vh;
-    overflow-y:scroll;
+    width:30vw;
+    overflow-y:auto;
+    margin: 2vh 30vw;
 }
 .padlt{
     padding-left: 3rem;
+}
+.edit{
+    color:#29abe2;
+    text-decoration: underline;
+    font-weight:300;
+    margin: 0 30px;
+}
+.editInput{
+    border: none;
+    width:100px;
+    border-radius: 20px;
+    padding-left:15px;
+    margin-right:2%;
+    &:focus{
+        outline: none;
+    }
 }
 $breakpoint-phone: 500px;
 
@@ -45,6 +63,7 @@ $breakpoint-phone: 500px;
         margin:10% 0;
     }
     .drop{
-        margin:6vh 40vw;
+        width:80vw;
+        margin:3vh 50vw;
     }
 }

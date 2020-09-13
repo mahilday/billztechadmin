@@ -10,50 +10,106 @@
   <div class="row">
     <div class="col">
       <div class="card shadow border-0 py-5">
-        <h1 class="text-center my-3 ">Vaccination Booking Details</h1>
-        <div class="myself" style="min-height: 600px; padding: 5%;" *ngIf ="getdata.myselfBool">
+        <h1 class="text-center my-3">Vaccination Booking Details</h1>
+        <div
+          class="myself"
+          style="min-height: 600px; padding: 5%"
+          *ngIf="getdata.myselfBool"
+        >
           <div class="prof">
-          <h3><b>ID: </b>{{myself._id}}</h3>
-          <p><b>Place chosen for vaccination: </b>{{myself.place}}</p>
-          <p><b>Full Name: </b>{{myself.profile.firstname + ' ' + myself.profile.lastname}}</p>
-          <p><b>Age: </b>{{myself.profile.age}}</p>
-          <p><b>Email: </b>{{myself.profile.email}}</p>
-          <p><b>Phone: </b>{{myself.profile.phone}}</p>
-          <p><b>Gender: </b>{{myself.profile.gender}}</p>
-          <p><b>Address: </b>{{myself.profile.address.address + '(' + myself.profile.address.zipcode + ')' }}</p>
-          <h4>Payment Status: {{myself.paymentStatus}}</h4>
-        </div>
-          <div class="padlt">
-            <h2 class ="my-4">Vaccines chosen</h2>
-          <div *ngFor="let vacc of myself.vaccine; let i = index">
-            <h4><b>Vaccine Name: </b>{{vacc.name}}</h4>
-            <small class = "text-muted"><b>Vaccine brand: </b>{{myself.brandschosen[i].name + ' ' + myself.brandschosen[i].price}}</small>
+            <h3><b>ID: </b>{{ myself._id }}</h3>
+            <p><b>Place chosen for vaccination: </b>{{ myself.place }}</p>
+            <p>
+              <b>Full Name: </b
+              >{{ myself.profile.firstname + " " + myself.profile.lastname }}
+            </p>
+            <p><b>Age: </b>{{ myself.profile.age }}</p>
+            <p><b>Email: </b>{{ myself.profile.email }}</p>
+            <p><b>Phone: </b>{{ myself.profile.phone }}</p>
+            <p><b>Gender: </b>{{ myself.profile.gender }}</p>
+            <p>
+              <b>Address: </b
+              >{{
+                myself.profile.address.address +
+                  "(" +
+                  myself.profile.address.zipcode +
+                  ")"
+              }}
+            </p>
+            <h4>
+              Payment Status:
+              <input
+                class="editInput"
+                type="text"
+                [disabled] = "show"
+                [(ngModel)]="myself.paymentStatus"
+              /><i (click)="switch()" class="fas fa-edit"></i>
+            </h4>
+            <div toastContainer></div>
+            <button class="btn badge-pill badge-primary my-2" (click) = "updateMy()">Click to finish edit</button>
           </div>
-          <h4>Total Price: {{myself.totalprice}}</h4>
+          <div class="padlt">
+            <h2 class="my-4">Vaccines chosen</h2>
+            <div *ngFor="let vacc of myself.vaccine; let i = index">
+              <h4><b>Vaccine Name: </b>{{ vacc.name }}</h4>
+              <small class="text-muted"
+                ><b>Vaccine brand: </b
+                >{{
+                  myself.brandschosen[i].name +
+                    " " +
+                    myself.brandschosen[i].price
+                }}</small
+              >
+            </div>
+            <h4>Total Price: {{ myself.totalprice }}</h4>
+            <div class ="badge badge-pill badge-info">{{myself.vaccinationStatus}}</div>
           </div>
           <ul class="nav align-items-center zindex">
             <li class="nav-item" ngbDropdown placement="bottom-right">
-                <input type="submit" class="assign" ngbDropdownToggle value="Assign To">
-              <div class="dropdown-menu-arrow drop dropdown-menu-right" ngbDropdownMenu >
-                <a routerLinkActive="active" [routerLink]="['/user-profile']" *ngFor = "let nurse of allNurses" class="dropdown-item">
-                  <i class="ni ni-calendar-grid-58"></i>
-                  <span>{{nurse.name}}</span>
+              <input
+                type="submit"
+                class="assign" 
+                ngbDropdownToggle
+                value="Assign To"
+              />
+              <div
+                class="dropdown-menu-arrow drop dropdown-menu-right"
+                ngbDropdownMenu
+              >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="search-text"
+                  aria-describedby="search-text"
+                  [(ngModel)]="searchText"
+                  placeholder="Enter text to search"
+                  autofocus
+                />
+                <a
+                  (click)="onSwitch(nurse)"
+                  *ngFor="let nurse of allNurses | appFilter: searchText"
+                  class="dropdown-item"
+                >
+                  <span>{{ nurse.name }} </span
+                  ><span class="badge badge-pill badge-primary float-right">{{
+                    nurse.state + ", " + nurse.localgovt
+                  }}</span>
                 </a>
               </div>
-                
             </li>
           </ul>
-          <div class="dropdown-menu-arrow dropdown-menu-right" *ngIf ="show">
-         
-          </div>
+          <div
+            class="dropdown-menu-arrow dropdown-menu-right"
+            *ngIf="show"
+          ></div>
         </div>
-        <div style="min-height: 600px; padding: 5%;" *ngIf ="getdata.familyBool">
-          <h3><b>ID: </b>{{family._id}}</h3>
-          <p><b>Place chosen for vaccination: </b>{{family.place}}</p>
+        <div style="min-height: 600px; padding: 5%" *ngIf="getdata.familyBool">
+          <h3><b>ID: </b>{{ family._id }}</h3>
+          <p><b>Place chosen for vaccination: </b>{{ family.place }}</p>
         </div>
-        <div style="min-height: 600px; padding: 5%;" *ngIf ="getdata.corpBool">
-          <h3><b>ID: </b>{{corp._id}}</h3>
-          <p><b>Full Name: </b>{{corp.fullname}}</p>
+        <div style="min-height: 600px; padding: 5%" *ngIf="getdata.corpBool">
+          <h3><b>ID: </b>{{ corp._id }}</h3>
+          <p><b>Full Name: </b>{{ corp.fullname }}</p>
         </div>
       </div>
     </div>
