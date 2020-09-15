@@ -9,3 +9,21 @@
 .rowone{
     padding:5%;
 }
+.onerow{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-around;
+    align-items: space-around;
+    & > div{
+        flex-grow:1;
+        padding:0 5vw;
+        &:hover{
+            flex-grow: 2;
+        }
+    }
+}
+.namevacc> div{
+    padding:0 5vw;
+    flex-grow:1;
+}
