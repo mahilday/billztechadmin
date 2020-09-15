@@ -7,7 +7,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { BookingsComponent } from '../../../nurse/bookings/bookings.component';
 import { HistoryComponent } from '../../../nurse/history/history.component';
-import { ProfileComponent } from '../../../nurse/profile/profile.component'
+import { ProfileComponent } from '../../../nurse/profile/profile.component';
+import { EachbookingComponent } from '../../../nurse/eachbooking/eachbooking.component'
 @NgModule({
   imports: [
     CommonModule,
@@ -19,7 +20,8 @@ import { ProfileComponent } from '../../../nurse/profile/profile.component'
   declarations: [
    BookingsComponent,
    HistoryComponent,
-   ProfileComponent
+   ProfileComponent,
+   EachbookingComponent
   ]
 })
 export class NurseLayoutModule { }

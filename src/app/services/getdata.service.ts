@@ -11,6 +11,7 @@ export class GetDataService{
 
   }
 
+  bookingedit ={}
 
  myselfBool = null
  familyBool = null

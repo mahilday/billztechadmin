@@ -3,22 +3,24 @@
       <div class="header-body">
         <!-- Card stats -->
         <div class="row">
+          <h1 class="text-white">New Bookings</h1>
           </div>
       </div>
     </div>
   </div>
-  <div class="col-xl-12 order-xl-1">
+  <div class="col">
     <div class="card bg-secondary shadow" *ngFor ="let data of nurse.bookings">
-      <div class="row card-header bg-white border-0">
+      <div class="card-header bg-white border-0">
         <div class="row">
-        <div class="align-items-center col-6" >
+        <div class="align-items-center col-8" (click) ="formEdit(data)" >
           <h4 class="text-muted font-weight-bold"><small>{{data._id}}</small></h4>
           <div><h4>{{data.profile.firstname + ' ' + data.profile.lastname}}</h4></div>
           <div><p>{{data.profile.address.address + ', ' + data.profile.address.zipcode}}</p></div>
           <div><p>{{data.profile.phone}}</p></div>
           <div><p>{{date(data.profile.time)}}</p></div>
+          <h4>Payment Status: {{data.paymentStatus}}</h4>
           </div>
-          <div class="col-6" *ngFor ="let vacc of data.vaccine">
+          <div class="align-items-right col" *ngFor ="let vacc of data.vaccine">
             <h4 class="text-muted font-weight-bold"><small>{{vacc._id}}</small></h4>
             <h4>{{vacc.name}}</h4>
           </div>

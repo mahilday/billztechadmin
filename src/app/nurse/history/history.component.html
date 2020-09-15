@@ -1,1 +1,26 @@
-<p>history works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+        <div class="row">
+            <h1 class="text-white">History</h1>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card bg-secondary shadow" *ngFor ="let data of nurse.bookings">
+      <div class="card-header bg-white border-0">
+        <div class="row">
+        <div class="align-items-center col-8" >
+          <h4 class="text-muted font-weight-bold"><small>{{data._id}}</small></h4>
+          <div><h4>{{data.profile.firstname + ' ' + data.profile.lastname}}</h4></div>
+          </div>
+          <div class="align-items-right col" *ngFor ="let vacc of data.vaccine">
+            <h4 class="text-muted font-weight-bold"><small>{{vacc._id}}</small></h4>
+            <h4>{{vacc.name}}</h4>
+          </div>
+        </div>
+          </div>
+          </div>
+</div>

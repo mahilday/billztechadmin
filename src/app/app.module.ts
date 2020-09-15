@@ -16,7 +16,7 @@ import {AuthService} from './services/auth.service'
 import {GetDataService} from './services/getdata.service'
 import {AuthGuard} from './services/auth.guard';
 import { NurseLayoutComponent } from './layouts/nurse-layout/nurse-layout/nurse-layout.component';
-import {ToastrModule, ToastContainerModule} from 'ngx-toastr'
+import {ToastrModule, ToastContainerModule} from 'ngx-toastr';
 
 
 @NgModule({
