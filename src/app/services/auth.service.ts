@@ -10,7 +10,17 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   isAuthenticate = false;
   constructor(private http: HttpClient, private router: Router){
-
+  }
+  loginDets = {
+    bookings: null,
+    name: '',
+    email: '',
+    role: '',
+    state: '',
+    localgovt: '',
+    address: '',
+    phone:'',
+    education: ''
   }
   Login(login){
     this.http
@@ -24,8 +34,45 @@ export class AuthService {
         if(res.result.role === "admin"){
           this.router.navigateByUrl('/')
         } else{
-          this.router.navigateByUrl('/maps')
+          this.router.navigateByUrl('profile')
         }
+        this.loginDets.bookings = res.result.bookings;
+        this.loginDets.name = res.result.name;
+        this.loginDets.email = res.result.email;
+        this.loginDets.role = res.result.role;
+        this.loginDets.state = res.result.state;
+        this.loginDets.localgovt = res.result.localgovt;
+        this.loginDets.address = res.result.address;
+        this.loginDets.phone = res.result.phone;
+        this.loginDets.education = res.result.education
+        
+        this.isAuthenticate = true;
+        return this.isAuthenticate
+      }).catch((err)=> {
+        this.isAuthenticate = false;
+        return this.isAuthenticate
+      })
+  }
+  loginLocal : any =()=>{
+    this.http
+      .post(`${environment.baseUrl}/login`, JSON.parse(window.localStorage.getItem('user')))
+      .toPromise()
+      .then((res: any)=>{
+        console.log(res)
+        if(res.result.role === "admin"){
+          this.router.navigateByUrl('/')
+        } else{
+          this.router.navigateByUrl('profile')
+        }
+        this.loginDets.bookings = res.result.bookings;
+        this.loginDets.name = res.result.name;
+        this.loginDets.email = res.result.email;
+        this.loginDets.role = res.result.role;
+        this.loginDets.state = res.result.state;
+        this.loginDets.localgovt = res.result.localgovt;
+        this.loginDets.address = res.result.address;
+        this.loginDets.phone = res.result.phone;
+        this.loginDets.education = res.result.education
         this.isAuthenticate = true;
         return this.isAuthenticate
       }).catch((err)=> {

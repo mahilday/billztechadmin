@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-bookings',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _auth: AuthService) { }
 
   ngOnInit(): void {
   }
-
+  nurse = this._auth.loginDets
+  date(data){
+    let f = new Date(data).toLocaleString()
+    return f
+  }
 }

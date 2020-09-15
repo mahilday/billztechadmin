@@ -12,7 +12,8 @@ import { ProfileComponent } from '../../../nurse/profile/profile.component'
   imports: [
     CommonModule,
     RouterModule.forChild(NurseLayoutRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
     // NgbModule
   ],
   declarations: [
