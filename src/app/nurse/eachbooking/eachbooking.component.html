@@ -1,73 +1,77 @@
 <div class="header bg-gradient-danger back pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
-      <div class="header-body">
-        <!-- Card stats -->
-        <div class="row">
-          <h1 class="text-white">Edit Booking</h1>
-          </div>
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <h1 class="text-white">Edit Booking</h1>
       </div>
     </div>
   </div>
-  <div class="col cardone">
-    <div class="card bg-secondary shadow">
-      <div class="card-header bg-white border-0">
-        <div class="row rowone">
-        <div class="align-items-center col-8" >
+</div>
+<div class="col cardone">
+  <div class="card bg-secondary shadow">
+    <div class="card-header bg-white border-0">
+      <div class="row rowone">
+        <div class="align-items-center col-8">
           <h4 class="text-muted font-weight-bold"><small>{{booking._id}}</small></h4>
-          <div><h4>{{booking.profile.firstname + ' ' + booking.profile.lastname}}</h4></div>
-          <div><p>{{booking.profile.address.address + ', ' + booking.profile.address.zipcode}}</p></div>
-          <div><p>{{booking.profile.phone}}</p></div>
-          <div><p>{{date(booking.profile.time)}}</p></div>
-          <h4>Payment Status: {{booking.paymentStatus}}</h4>
-          </div>
-          <div class="align-items-right col" *ngFor ="let vacc of booking.vaccine">
-            <h4 class="text-muted font-weight-bold"><small>{{vacc._id}}</small></h4>
-            <h4>{{vacc.name}}</h4>
-          </div>
-        </div>
-        <div class="form-group namevacc">
           <div>
+            <h4>{{booking.profile.firstname + ' ' + booking.profile.lastname}}</h4>
+          </div>
+          <div>
+            <p>{{booking.profile.address.address + ', ' + booking.profile.address.zipcode}}</p>
+          </div>
+          <div>
+            <p>{{booking.profile.phone}}</p>
+          </div>
+          <div>
+            <p>{{date(booking.profile.time)}}</p>
+          </div>
+          <h4>Payment Status: {{booking.paymentStatus}}</h4>
+        </div>
+        <div class="align-items-right col" *ngFor="let vacc of booking.vaccine">
+          <h4 class="text-muted font-weight-bold"><small>{{vacc._id}}</small></h4>
+          <h4>{{vacc.name}}</h4>
+        </div>
+      </div>
+
+      <div class="form-group  onerow row">
+        <div class="col-6">
           <h4><label class="my-2">Name of Vaccinator:</label></h4>
           <div class="input-group input-group-alternative">
-            <input class="form-control" name="vaccinator" placeholder="Name of Vaccinator" type="text" [(ngModel)] = "booking.vaccinator">
-          </div>
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ni ni-user-08"></i></span>
+            </div>
+            <input class="form-control" name="vaccinator" placeholder="Name of Vaccinator" type="text"
+              [(ngModel)]="booking.vaccinator">
           </div>
         </div>
-        <div class="form-group  onerow row">
-            <div class="col-6">
-            <h4><label class="my-2">Name of Vaccinator:</label></h4>
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="ni ni-user-08"></i></span>
-              </div>
-              <input class="form-control" name="vaccinator" placeholder="Name of Vaccinator" type="text" [(ngModel)] = "booking.vaccinator">
-            </div>
-            </div>
-            <div class="col-6">
-                <h4><label class="my-2">Name of Vaccinator:</label></h4>
-                <div class="input-group input-group-alternative">
-                  <input class="form-control" name="vaccinator" placeholder="Name of Vaccinator" type="text" [(ngModel)] = "booking.vaccinator">
-                </div>
-                </div>
+        <div class="col-6">
+          <h4><label class="my-2">Number of total dosages to be given:</label></h4>
+          <div class="input-group input-group-alternative">
+            <input class="form-control" name="dosageNumber" placeholder="number of dosages" type="number"
+              [(ngModel)]="booking.dosageNumber">
           </div>
-          <div class="form-group  onerow row">
-            <div class="col-6">
-            <h4><label class="my-2">Name of Vaccinator:</label></h4>
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="ni ni-user-08"></i></span>
-              </div>
-              <input class="form-control" name="vaccinator" placeholder="Name of Vaccinator" type="text" [(ngModel)] = "booking.vaccinator">
-            </div>
-            </div>
-            <div class="col-6">
-                <h4><label class="my-2">Name of Vaccinator:</label></h4>
-                <div class="input-group input-group-alternative">
-                  <input class="form-control" name="vaccinator" placeholder="Name of Vaccinator" type="text" [(ngModel)] = "booking.vaccinator">
-                </div>
-                </div>
+        </div>
+      </div>
+      <div class="form-group  onerow row">
+        <div class="col-6">
+          <h4><label class="my-2">Dosage Stage:</label></h4>
+          <div class="input-group input-group-alternative">
+            <select class="form-control" name="dosageStage" 
+              [(ngModel)]="booking.dosageStage">
+            <option>stage 1</option>
+            </select>
           </div>
-        
+        </div>
+        <div class="col-6">
+          <h4><label class="my-2">Date:</label></h4>
+          <div class="input-group input-group-alternative">
+            <input class="form-control" name="vaccinator" placeholder="date" type="datetime"
+              [(ngModel)]="booking.date">
           </div>
-          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
