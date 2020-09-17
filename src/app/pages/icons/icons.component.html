@@ -17,27 +17,12 @@
           <h3 class="mb-0">Bookings</h3>
         </div>
         <div>
-          <button class ="btn " [ngClass]= "(!myself && !family) && !corp?'addcolor':''" (click) ="AllBool()">All Bookings</button>
-          <span *ngIf ="(myself || family) || corp">
           <button class ="btn " [ngClass]= "myself?'addcolor':''" (click) ="MyselfBool()">Myself</button>
           <button class ="btn "  [ngClass]= "family?'addcolor':''" (click) ="FamBool()">Family</button>
           <button class ="btn "  [ngClass]= "corp?'addcolor':''" (click) ="CorpBool()">Corporate</button>
-          </span>
         </div>
         <div class="table-responsive">
           <!-- Projects table -->
-          <table *ngIf ="(!myself && !family) && !corp" class="table align-items-center table-flush">
-            
-              <tr>
-                <td class="text-center"  (click) ="MyselfBool()">Myself</td>
-              </tr>
-              <tr>
-                <td class="text-center" (click) ="FamBool()">Family</td>
-              </tr>
-              <tr>
-                <td class="text-center" (click) ="CorpBool()">Corporate</td>
-              </tr>
-              </table>
           <table *ngIf ="myself" class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>

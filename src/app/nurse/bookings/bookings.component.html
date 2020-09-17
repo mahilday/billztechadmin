@@ -8,7 +8,12 @@
       </div>
     </div>
   </div>
-  <div class="col">
+  <div>
+    <button class ="btn " [ngClass]= "myself?'addcolor':''" (click) ="MyselfBool()">Myself</button>
+    <button class ="btn "  [ngClass]= "family?'addcolor':''" (click) ="FamBool()">Family</button>
+    <button class ="btn "  [ngClass]= "corp?'addcolor':''" (click) ="CorpBool()">Corporate</button>
+  </div>
+  <div class="col" *ngIf ="myself">
     <div class="card bg-secondary shadow" *ngFor ="let data of myselfbookings">
       <div class="card-header bg-white border-0">
         <div class="row">

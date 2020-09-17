@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="col-6">
-          <h4><label class="my-2">Number of total dosages to be given:</label></h4>
+          <h4><label class="my-2">Total dosages to be given:</label></h4>
           <div class="input-group input-group-alternative">
             <input (change)="changeDosage()" class="form-control" name="dosageNumber" placeholder="number of dosages" type="number"
               [(ngModel)]="booking.dosageNumber">
@@ -58,8 +58,9 @@
           <h4><label for="input-stage" class="my-2">Dosage Stage:</label></h4>
           <div class="input-group input-group-alternative">
             <select id="input-stage" class="form-control" name="dosageStage" 
-              [(ngModel)]="booking.dosageStage" >
-            <option *ngFor="let stage of newStages; let i = index">{{allStages(i)}}</option>
+              [(ngModel)]="booking.vaccinationStatus" >
+              <option>Choose vaccination stage</option>
+            <option *ngFor="let stage of stages; let i = index">{{allStages(i)}}</option>
             </select>
           </div>
         </div>
@@ -67,9 +68,10 @@
           <h4><label class="my-2">Date:</label></h4>
           <div class="input-group input-group-alternative">
             <input class="form-control" name="vaccinator"  type="datetime-local"
-              [(ngModel)]="booking.date">
+              [(ngModel)]="booking.startDate">
           </div>
         </div>
+        <button class="btn btn-primary my-4" (click)="updateForMyself()">Update Booking</button>
       </div>
 
     </div>

@@ -80,7 +80,6 @@ export class AuthService {
         } else{
           this.router.navigateByUrl('profile')
         }
-        this.myself()
         this.loginDets.bookings = res.result.bookings;
         this.loginDets.name = res.result.name;
         this.loginDets.email = res.result.email;

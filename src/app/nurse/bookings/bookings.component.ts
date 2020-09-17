@@ -23,6 +23,24 @@ export class BookingsComponent implements OnInit {
     let f = new Date(data).toLocaleString()
     return f
   }
+  myself = true;
+  family = false;
+  corp = false;
+  FamBool(){
+    this.myself = false;
+    this.family =true;
+    this.corp = false;
+  }
+  CorpBool(){
+    this.myself = false;
+    this.family = false;
+    this.corp = true;
+  }
+  MyselfBool(){
+    this.myself = true;
+    this.family = false;
+    this.corp = false;
+  }
   checkMyselfAssigned = function(){
     for(let i =0; i< this.myselfbookings.length; i++){
       if(this.myselfbookings[i].vaccinationStatus === "assigned"){

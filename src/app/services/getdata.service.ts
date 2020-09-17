@@ -21,4 +21,41 @@ export class GetDataService{
   Myself={}
   Family ={}
   Corporate ={}
+
+  myselfData = []
+  famData =[]
+  corpData = []
+
+  getMyself: any =()=>{
+    this.http
+    .get(`${environment.baseUrl}/my-form`)
+    .toPromise()
+    .then((res: any)=>{
+      this.myselfData = res.result
+    }).catch((err)=> {
+      console.log('Error', err)
+    })
+  }
+  
+  getFam: any=()=>{
+    this.http
+    .get(`${environment.baseUrl}/family-form`)
+    .toPromise()
+    .then((res: any)=>{
+      this.famData = res.result
+    }).catch((err)=> {
+      console.log('Error', err)
+    })
+  }
+  getCorp: any=()=>{
+    this.http
+    .get(`${environment.baseUrl}/corporate-form`)
+    .toPromise()
+    .then((res: any)=>{
+      this.corpData = res.result
+    }).catch((err)=> {
+      console.log('Error', err)
+    })
+  }
+
 }

@@ -13,17 +13,13 @@ export class IconsComponent implements OnInit {
 
   public copy: string;
   constructor(private getdata: GetDataService, private http: HttpClient, private router: Router) { }
-  myself = false;
+  myself = true;
   family = false;
   corp = false;
   myselfData = []
   famData =[]
   corpData =[]
-  AllBool(){
-    this.myself = false
-    this.corp = false
-    this.family = false
-  }
+  // boolean part to enable clicks
   MyselfBool(){
     this.myself = true
     this.corp = false
@@ -47,25 +43,13 @@ export class IconsComponent implements OnInit {
     this.getdata.myselfBool = false;
     this.getdata.familyBool = false;
     this.getdata.corpBool = true;
+    console.log(this.myselfData, this.famData, this.corpData)
   }
   ngOnInit() {
-    this.All()
-  }
-  All(){
-    this.getMyself();
-    this.getFam();
-    this.getCorp();
-  }
-  getMyself(){
-    this.http
-    .get(`${environment.baseUrl}/my-form`)
-    .toPromise()
-    .then((res: any)=>{
-      this.myselfData = res.result
-    }).catch((err)=> {
-      console.log('Error', err)
-    })
-  }
+    this.myselfData = this.getdata.myselfData
+    this.famData = this.getdata.famData
+    this.corpData = this.getdata.corpData
+      }
   assigned = false
   switchClass(data){
     switch (data.vaccinationStatus) {
@@ -87,27 +71,8 @@ export class IconsComponent implements OnInit {
     this.getdata.assigned = this.assigned
   }
 
-  getFam(){
-    this.http
-    .get(`${environment.baseUrl}/family-form`)
-    .toPromise()
-    .then((res: any)=>{
-      this.famData = res.result
-    }).catch((err)=> {
-      console.log('Error', err)
-    })
-  }
-  getCorp(){
-    this.http
-    .get(`${environment.baseUrl}/corporate-form`)
-    .toPromise()
-    .then((res: any)=>{
-      this.corpData = res.result
-    }).catch((err)=> {
-      console.log('Error', err)
-    })
-  }
-
+   
+ 
   clickNext(data){
     this.router.navigateByUrl(`icons/${data._id}`)
     if(this.myself === true){
