@@ -15,28 +15,29 @@ export class BookingsComponent implements OnInit {
   constructor(private _auth: AuthService, private _http:HttpClient, private router: Router, private getdata: GetDataService) { }
 
   ngOnInit(): void {
-    this.myself()
+    
   }
-  nurse = this._auth.loginDets
-  bookings =[]
+  nurse: any = this._auth.loginDets
+  myselfbookings =this._auth.mybookings
   date(data){
     let f = new Date(data).toLocaleString()
     return f
   }
-  myself(){
-    this._http
-    .post(`${environment.baseUrl}/getvacc`, this.nurse)
-    .toPromise()
-    .then((res: any)=>{
-      console.log('done')
-      this.bookings = res.result
-    })
-    .catch(()=>{
-      console.log('not done')
-    })
+  checkMyselfAssigned = function(){
+    for(let i =0; i< this.myselfbookings.length; i++){
+      if(this.myselfbookings[i].vaccinationStatus === "assigned"){
+        this.nurse.done = false;
+      } else{
+        this.nurse.done = true;
+      }
+    }
   }
   formEdit=(data)=>{
     this.router.navigateByUrl(`edit_booking/${data._id}`)
     this.getdata.bookingedit = data
   }
+  
+ 
+ 
+  
 }

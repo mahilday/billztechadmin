@@ -16,5 +16,6 @@ export class AppComponent implements OnInit{
     this._auth.loginLocal().then(()=>{
       console.log('any')
     })
+    this._auth.checkMyselfAssigned()
   }
 }

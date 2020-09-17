@@ -85,6 +85,7 @@ export class MapsComponent implements OnInit {
           .toPromise()
           .then((res: any)=>{
             this.allNurses = res.result;
+            console.log(this.allNurses)
           })
           .catch(err =>{
             console.log('Error', err)

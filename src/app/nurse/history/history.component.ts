@@ -12,7 +12,7 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  nurse = this._auth.loginDets
+  nurse = this._auth.mybookings
   date(data){
     let f = new Date(data).toLocaleString()
     return f

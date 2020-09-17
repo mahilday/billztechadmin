@@ -22,6 +22,21 @@ export class AuthService {
     phone:'',
     education: ''
   }
+  mybookings=[]
+  myself(){
+    this.http
+    .post(`${environment.baseUrl}/getvacc`, this.loginDets)
+    .toPromise()
+    .then((res: any)=>{
+      console.log('done')
+      console.log(res)
+      this.mybookings = res.result
+    })
+    .catch(()=>{
+      console.log('not done')
+    })
+  }
+  checkMyselfAssigned: any = null;
   Login(login){
     this.http
       .post(`${environment.baseUrl}/login`, login)
@@ -47,6 +62,7 @@ export class AuthService {
         this.loginDets.education = res.result.education
         
         this.isAuthenticate = true;
+        this.myself()
         return this.isAuthenticate
       }).catch((err)=> {
         this.isAuthenticate = false;
@@ -64,6 +80,7 @@ export class AuthService {
         } else{
           this.router.navigateByUrl('profile')
         }
+        this.myself()
         this.loginDets.bookings = res.result.bookings;
         this.loginDets.name = res.result.name;
         this.loginDets.email = res.result.email;
@@ -74,6 +91,7 @@ export class AuthService {
         this.loginDets.phone = res.result.phone;
         this.loginDets.education = res.result.education
         this.isAuthenticate = true;
+        this.myself()
         return this.isAuthenticate
       }).catch((err)=> {
         this.isAuthenticate = false;
