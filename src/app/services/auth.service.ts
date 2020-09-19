@@ -23,6 +23,8 @@ export class AuthService {
     education: ''
   }
   mybookings=[]
+  fambookings =[]
+  corpbookings =[]
   myself(){
     this.http
     .post(`${environment.baseUrl}/getvacc`, this.loginDets)
@@ -36,8 +38,36 @@ export class AuthService {
       console.log('not done')
     })
   }
+  family(){
+    this.http
+    .post(`${environment.baseUrl}/getfamvacc`, this.loginDets)
+    .toPromise()
+    .then((res: any)=>{
+      console.log('done')
+      console.log(res)
+      this.fambookings = res.result
+    })
+    .catch(()=>{
+      console.log('not done')
+    })
+  }
+  corp(){
+    this.http
+    .post(`${environment.baseUrl}/getcorpvacc`, this.loginDets)
+    .toPromise()
+    .then((res: any)=>{
+      console.log('done')
+      console.log(res)
+      this.corpbookings = res.result
+    })
+    .catch(()=>{
+      console.log('not done')
+    })
+  }
+  isLoading=false
   checkMyselfAssigned: any = null;
   Login(login){
+    this.isLoading = true
     this.http
       .post(`${environment.baseUrl}/login`, login)
       .toPromise()
@@ -51,6 +81,7 @@ export class AuthService {
         } else{
           this.router.navigateByUrl('profile')
         }
+        this.isLoading=false
         this.loginDets.bookings = res.result.bookings;
         this.loginDets.name = res.result.name;
         this.loginDets.email = res.result.email;
@@ -63,6 +94,8 @@ export class AuthService {
         
         this.isAuthenticate = true;
         this.myself()
+        this.family()
+        this.corp()
         return this.isAuthenticate
       }).catch((err)=> {
         this.isAuthenticate = false;
@@ -91,6 +124,8 @@ export class AuthService {
         this.loginDets.education = res.result.education
         this.isAuthenticate = true;
         this.myself()
+        this.family()
+        this.corp()
         return this.isAuthenticate
       }).catch((err)=> {
         this.isAuthenticate = false;

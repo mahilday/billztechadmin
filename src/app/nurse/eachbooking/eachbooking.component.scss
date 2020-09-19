@@ -9,6 +9,10 @@
 .rowone{
     padding:5%;
 }
+.col{
+    padding-right:0px;
+    padding-left:0px;
+}
 .onerow{
     display: flex;
     flex-direction: row;
@@ -26,4 +30,14 @@
 .namevacc> div{
     padding:0 5vw;
     flex-grow:1;
+}
+.flexyman{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.flexyvacc{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: space-between;
 }

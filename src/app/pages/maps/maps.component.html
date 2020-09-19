@@ -98,20 +98,134 @@
               </div>
             </li>
           </ul>
-          <div
-            class="dropdown-menu-arrow dropdown-menu-right"
-            *ngIf="show"
-          ></div>
         </div>
         <div style="min-height: 600px; padding: 5%" *ngIf="getdata.familyBool">
-          <h3><b>ID: </b>{{ family._id }}</h3>
+          <h3><b>ID: </b>{{ family._id }}</h3><div class ="badge my-3 badge-pill badge-info">{{family.vaccinationStatus}}</div>   
           <p><b>Place chosen for vaccination: </b>{{ family.place }}</p>
-        </div>
+          <span class="flexy" *ngFor ='let fam of family.profile; let i = index'>
+            <p class ="mr-3">
+              <b>Full Name: </b
+              >{{ fam.firstname + " " + fam.lastname }}
+            </p>
+            <p class="mx-2"><b>Age: </b>{{ fam.age }}</p>
+            <p class="mx-2"><b>Email: </b>{{ fam.email }}</p>
+            <p class="mx-2"><b>Phone: </b>{{ fam.phone }}</p>
+            <p class="mx-2"><b>Gender: </b>{{ fam.gender }}</p>
+            <div class="mx-3" *ngFor="let vacc of fam.vaccines; let i = index">
+              <h4><b>Vaccine Name: </b>{{ vacc.name }}</h4>
+              <small class="text-muted"
+                ><b>Vaccine brand: </b
+                >{{
+                  fam.brandschosen[i].name +
+                    " " +
+                    fam.brandschosen[i].price
+                }}</small
+              >
+            </div>
+          </span>
+            <p>
+              <b>Address: </b
+              >{{
+                family.address +
+                  "(" +
+                  family.time+
+                  ")"
+              }}
+            </p>
+            <h4>Total Price: {{ family.totalprice }}</h4>
+            
+            <h4 class="my-4">
+              Payment Status:
+              <input
+                class="editInput"
+                type="text"
+                [disabled] = "show"
+                [(ngModel)]="family.paymentStatus"
+              /><i (click)="switch()" class="fas fa-edit"></i>
+            </h4>
+            <div toastContainer></div>
+            <button class="btn badge-pill badge-primary my-2" (click) = "updateFam()">Click to finish edit</button>
+          <ul class="nav align-items-center zindex">
+            <li class="nav-item" ngbDropdown placement="bottom-right">
+              <input
+                type="submit"
+                class="assign" 
+                ngbDropdownToggle
+                value="Assign To"
+              />
+              <div
+                class="dropdown-menu-arrow drop dropdown-menu-right"
+                ngbDropdownMenu
+              >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="search-text"
+                  aria-describedby="search-text"
+                  [(ngModel)]="searchText"
+                  placeholder="Enter text to search"
+                  autofocus
+                />
+                <a
+                  (click)="famSwitch(nurse, family)"
+                  *ngFor="let nurse of allNurses | appFilter: searchText"
+                  class="dropdown-item"
+                >
+                  <span>{{ nurse.name }} </span
+                  ><span class="badge badge-pill badge-primary float-right">{{
+                    nurse.state + ", " + nurse.localgovt
+                  }}</span>
+                </a>
+              </div>
+            </li>
+          </ul>
+      </div>
         <div style="min-height: 600px; padding: 5%" *ngIf="getdata.corpBool">
           <h3><b>ID: </b>{{ corp._id }}</h3>
-          <p><b>Full Name: </b>{{ corp.fullname }}</p>
+          <div class ="badge badge-pill my-3 badge-info">{{corp.vaccinationStatus}}</div>
+          <p class="my-2"><b>Full Name: </b>{{ corp.fullname }}</p>
+            <p class="my-2"><b>Email: </b>{{ corp.email }}</p>
+            <p class="my-2"><b>Phone: </b>{{ corp.phone }}</p>
+            <p class="my-2"><b>Questions: </b>{{ corp.questions }}</p>
+            <h2 class="mt-5">Company Details</h2>
+            <p class="my-2"><b>Company Name: </b>{{ corp.companyDetails.companyname }}</p>
+            <p class="my-2"><b>Phone: </b>{{ corp.companyDetails.address }}</p>
+            <p class="my-2"><b>Number of Staff: </b>{{ corp.companyDetails.nofstaff }}</p>
+            <ul class="nav align-items-center zindex">
+              <li class="nav-item" ngbDropdown placement="bottom-right">
+                <input
+                  type="submit"
+                  class="assign" 
+                  ngbDropdownToggle
+                  value="Assign To"
+                />
+                <div
+                  class="dropdown-menu-arrow drop dropdown-menu-right"
+                  ngbDropdownMenu
+                >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="search-text"
+                    aria-describedby="search-text"
+                    [(ngModel)]="searchText"
+                    placeholder="Enter text to search"
+                    autofocus
+                  />
+                  <a
+                    (click)="corpSwitch(nurse, corp)"
+                    *ngFor="let nurse of allNurses | appFilter: searchText"
+                    class="dropdown-item"
+                  >
+                    <span>{{ nurse.name }} </span
+                    ><span class="badge badge-pill badge-primary float-right">{{
+                      nurse.state + ", " + nurse.localgovt
+                    }}</span>
+                  </a>
+                </div>
+              </li>
+            </ul>
         </div>
       </div>
-    </div>
   </div>
 </div>

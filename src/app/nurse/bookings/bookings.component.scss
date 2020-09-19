@@ -7,3 +7,20 @@
 .new{
     border-bottom:1px solid #ccc;
 }
+.one{
+    padding:.5rem 2.5rem;
+    border:none;
+    background: #fff;
+    color:#f59c36;
+    transform:none;
+    background-blend-mode: color;
+    transition:all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover, &:focus, &:active{
+        transform: translate3d(50%, 30%, 50%);
+        box-shadow: 2px 2px 20px #aaa;
+        background-blend-mode: darken;
+        background: #eee;
+        color:rgb(250, 214, 148);
+        outline:none;
+    }
+}

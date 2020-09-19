@@ -13,7 +13,7 @@ export class GetDataService{
 
   bookingedit ={}
 
- myselfBool = null
+ myselfBool = true
  familyBool = null
  corpBool = null
  assigned = false
@@ -35,6 +35,8 @@ export class GetDataService{
     }).catch((err)=> {
       console.log('Error', err)
     })
+    this.getFam();
+    this.getCorp();
   }
   
   getFam: any=()=>{

@@ -28,21 +28,10 @@ export class MapsComponent implements OnInit {
       allNurses =[]
 
       Data(){
-        if(this.getdata.myselfBool === true){
-         this.myself = this.getdata.Myself
-        } else{
-         this.myself = {}
-        }
-        if(this.getdata.familyBool === true){
-          this.family = this.getdata.Family
-        } else{
-          this.family = {}
-        }
-        if(this.getdata.corpBool === true){
-          this.corp = this.getdata.Corporate
-        } else{
-         this.corp = {}
-        }
+        this.myself = this.getdata.Myself
+        this.family = this.getdata.Family
+        this.corp = this.getdata.Corporate
+       
         console.log(this.myself);
         console.log(this.family);
         console.log(this.corp)
@@ -65,6 +54,20 @@ export class MapsComponent implements OnInit {
             this.toastr.error("Booking Error Notification", 'Error')
           })
       }
+      updateFam(){
+        this.http
+          .put(`${environment.baseUrl}/updatefam`, this.family)
+          .toPromise()
+          .then((res)=>{
+            this.show = true;
+            this.toastr.success("Booking update successful")
+            console.log(res, this.myself)
+          })
+          .catch((err)=>{
+            this.toastr.error("Booking Error Notification", 'Error')
+          })
+      }
+      // filling nurse booking after confirmation
       onSwitch(nurse, myself){
         if(confirm('Are you sure you want to assign the booking to ' + nurse.name + ' who lives in ' + nurse.localgovt + ', ' + nurse.state)){
           nurse.newassigned_id = myself._id
@@ -79,6 +82,35 @@ export class MapsComponent implements OnInit {
             })
         }
       }
+      famSwitch(nurse, family){
+        if(confirm('Are you sure you want to assign the booking to ' + nurse.name + ' who lives in ' + nurse.localgovt + ', ' + nurse.state)){
+          nurse.newassigned_id = family._id
+          this.http
+            .put(`${environment.baseUrl}/updatefambooking`, nurse)
+            .toPromise()
+            .then((res)=>{
+              this.toastr.success("Booking update successful")
+            })
+            .catch(err =>{
+              this.toastr.error("Booking Error Notification", 'Error')
+            })
+        }
+      }
+      corpSwitch(nurse, corp){
+        if(confirm('Are you sure you want to assign the booking to ' + nurse.name + ' who lives in ' + nurse.localgovt + ', ' + nurse.state)){
+          nurse.newassigned_id = corp._id
+          this.http
+            .put(`${environment.baseUrl}/updatecorpbooking`, nurse)
+            .toPromise()
+            .then((res)=>{
+              this.toastr.success("Booking update successful")
+            })
+            .catch(err =>{
+              this.toastr.error("Booking Error Notification", 'Error')
+            })
+        }
+      }
+      // end of filling nurse bookings
       getNurses(){
         this.http
           .get(`${environment.baseUrl}/nurses`)

@@ -1,35 +1,130 @@
 <div class="header bg-gradient-danger back pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
-      <div class="header-body">
-        <!-- Card stats -->
-        <div class="row">
-          <h1 class="text-white">New Bookings</h1>
-          </div>
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <h1 class="text-white">New Bookings</h1>
       </div>
     </div>
   </div>
-  <div>
-    <button class ="btn " [ngClass]= "myself?'addcolor':''" (click) ="MyselfBool()">Myself</button>
-    <button class ="btn "  [ngClass]= "family?'addcolor':''" (click) ="FamBool()">Family</button>
-    <button class ="btn "  [ngClass]= "corp?'addcolor':''" (click) ="CorpBool()">Corporate</button>
-  </div>
-  <div class="col" *ngIf ="myself">
-    <div class="card bg-secondary shadow" *ngFor ="let data of myselfbookings">
-      <div class="card-header bg-white border-0">
-        <div class="row">
-        <div class="align-items-center col-8" (click) ="formEdit(data)" >
-          <h4 class="text-muted font-weight-bold"><small>{{data._id}}</small></h4>
-          <div><h4>{{data.profile.firstname + ' ' + data.profile.lastname}}</h4></div>
-          <div><p>{{data.profile.address.address + ', ' + data.profile.address.zipcode}}</p></div>
-          <div><p>{{data.profile.phone}}</p></div>
-          <div><p>{{date(data.profile.time)}}</p></div>
-          <h4>Payment Status: {{data.paymentStatus}}</h4>
+</div>
+<div>
+  <button class="one" (click)="MyselfBool()">Myself</button>
+  <button class="one" (click)="FamBool()">Family</button>
+  <button class="one" (click)="CorpBool()">Corporate</button>
+</div>
+<div class="col" *ngIf="myself">
+  <div class="card bg-secondary shadow" *ngFor="let data of myselfbookings">
+    <div class="card-header bg-white border-0">
+      <div class="row">
+        <div class="align-items-center col-8" (click)="formEdit(data)">
+          <h4 class="text-muted font-weight-bold">
+            <small>{{ data._id }}</small>
+          </h4>
+          <div>
+            <h4>{{ data.profile.firstname + " " + data.profile.lastname }}</h4>
           </div>
-          <div class="align-items-right col" *ngFor ="let vacc of data.vaccine">
-            <h4 class="text-muted font-weight-bold"><small>{{vacc._id}}</small></h4>
-            <h4>{{vacc.name}}</h4>
+          <div>
+            <p>
+              {{
+                data.profile.address.address +
+                  ", " +
+                  data.profile.address.zipcode
+              }}
+            </p>
           </div>
+          <div>
+            <p>{{ data.profile.phone }}</p>
+          </div>
+          <div>
+            <p>{{ date(data.profile.time) }}</p>
+          </div>
+          <h4>Payment Status: {{ data.paymentStatus }}</h4>
         </div>
+        <div class="align-items-right col" *ngFor="let vacc of data.vaccine">
+          <h4 class="text-muted font-weight-bold">
+            <small>{{ vacc._id }}</small>
+          </h4>
+          <h4>{{ vacc.name }}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col" *ngIf="family">
+  <div class="card bg-secondary shadow" *ngFor="let data of fambookings">
+    <div class="card-header bg-white border-0">
+      <div class="row">
+        <div class="align-items-center col-8" (click)="formEdit(data)">
+          <h4 class="text-muted font-weight-bold">
+            <small>{{ data._id }}</small>
+          </h4>
+          <div>
+            <p>
+              {{
+               data.address 
+              }}
+            </p>
           </div>
+          <div>
+            <div>
+              <p>{{ date(data.time) }}</p>
+            </div>
           </div>
+          <div *ngFor ="let prof of data.profile">
+            <h4>{{ prof.firstname + " " + prof.lastname }}</h4>
+          </div>
+          <div>
+            <p>{{ prof.phone }}</p>
+          </div>
+          
+        </div>
+          <h4>Payment Status: {{ data.paymentStatus }}</h4>
+        </div>
+        <div class="align-items-right col" *ngFor="let vacc of data.vaccine">
+          <h4 class="text-muted font-weight-bold">
+            <small>{{ vacc._id }}</small>
+          </h4>
+          <h4>{{ vacc.name }}</h4>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="col" *ngIf="corp">
+  <div class="card bg-secondary shadow" *ngFor="let data of corpbookings">
+    <div class="card-header bg-white border-0">
+      <div class="row">
+        <div class="align-items-center col-8" (click)="formEdit(data)">
+          <h4 class="text-muted font-weight-bold">
+            <small>{{ data._id }}</small>
+          </h4>
+          <div>
+            <h4>{{ data.profile.firstname + " " + data.profile.lastname }}</h4>
+          </div>
+          <div>
+            <p>
+              {{
+                data.profile.address.address +
+                  ", " +
+                  data.profile.address.zipcode
+              }}
+            </p>
+          </div>
+          <div>
+            <p>{{ data.profile.phone }}</p>
+          </div>
+          <div>
+            <p>{{ date(data.profile.time) }}</p>
+          </div>
+          <h4>Payment Status: {{ data.paymentStatus }}</h4>
+        </div>
+        <div class="align-items-right col" *ngFor="let vacc of data.vaccine">
+          <h4 class="text-muted font-weight-bold">
+            <small>{{ vacc._id }}</small>
+          </h4>
+          <h4>{{ vacc.name }}</h4>
+        </div>
+      </div>
+      </div>
+  </div>
 </div>

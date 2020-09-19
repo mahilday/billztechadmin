@@ -21,6 +21,24 @@ li{
         outline: none;
     }
 }
+.famassign{
+    width: max-content;
+    padding:10px 20px;
+    border-radius: 30px;
+    transform: translateX(100%);
+    background-color: rgb(12, 146, 199);
+    border: none;
+    color: white;
+    &:focus{
+        outline: none;
+    } 
+}
+.flexy{
+    display: flex;
+    width: 90%;
+    flex-wrap:wrap;
+    margin:4% 0;
+}
 .drop{
     height: 30vh;
     width:30vw;

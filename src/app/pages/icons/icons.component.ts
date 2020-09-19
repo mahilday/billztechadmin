@@ -49,6 +49,7 @@ export class IconsComponent implements OnInit {
     this.myselfData = this.getdata.myselfData
     this.famData = this.getdata.famData
     this.corpData = this.getdata.corpData
+    this.getdata.getMyself();
       }
   assigned = false
   switchClass(data){
@@ -65,7 +66,7 @@ export class IconsComponent implements OnInit {
         this.assigned = false
         return 'text-success'
         break;
-      default: 'badge'
+      default: 'text-muted'
         break;
     }
     this.getdata.assigned = this.assigned

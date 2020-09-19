@@ -19,6 +19,8 @@ export class BookingsComponent implements OnInit {
   }
   nurse: any = this._auth.loginDets
   myselfbookings =this._auth.mybookings
+  fambookings = this._auth.fambookings
+  corpbookings = this._auth.corpbookings
   date(data){
     let f = new Date(data).toLocaleString()
     return f
@@ -30,16 +32,25 @@ export class BookingsComponent implements OnInit {
     this.myself = false;
     this.family =true;
     this.corp = false;
+    this.getdata.myselfBool = false;
+    this.getdata.familyBool = true;
+    this.getdata.corpBool = false
   }
   CorpBool(){
     this.myself = false;
     this.family = false;
     this.corp = true;
+    this.getdata.myselfBool = false;
+    this.getdata.familyBool = false;
+    this.getdata.corpBool = true
   }
   MyselfBool(){
     this.myself = true;
     this.family = false;
     this.corp = false;
+    this.getdata.myselfBool = true;
+    this.getdata.familyBool = false;
+    this.getdata.corpBool = false
   }
   checkMyselfAssigned = function(){
     for(let i =0; i< this.myselfbookings.length; i++){
@@ -53,6 +64,7 @@ export class BookingsComponent implements OnInit {
   formEdit=(data)=>{
     this.router.navigateByUrl(`edit_booking/${data._id}`)
     this.getdata.bookingedit = data
+    console.log(data)
   }
   
  

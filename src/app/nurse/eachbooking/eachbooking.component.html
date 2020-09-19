@@ -8,7 +8,7 @@
     </div>
   </div>
 </div>
-<div class="col cardone">
+<div class="col cardone" *ngIf = "getdata.myselfBool">
   <div class="card bg-secondary shadow">
     <div class="card-header bg-white border-0">
       <div class="row rowone">
@@ -34,6 +34,98 @@
         </div>
       </div>
 
+      <div class="form-group  onerow row">
+        <div class="col-6">
+          <h4><label class="my-2">Name of Vaccinator:</label></h4>
+          <div class="input-group input-group-alternative">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="ni ni-user-08"></i></span>
+            </div>
+            <input class="form-control" name="vaccinator" placeholder="Name of Vaccinator" type="text"
+              [(ngModel)]="booking.vaccinator">
+          </div>
+        </div>
+        <div class="col-6">
+          <h4><label class="my-2">Total dosages to be given:</label></h4>
+          <div class="input-group input-group-alternative">
+            <input (change)="changeDosage()" class="form-control" name="dosageNumber" placeholder="number of dosages" type="number"
+              [(ngModel)]="booking.dosageNumber">
+          </div>
+        </div>
+      </div>
+      <div class=" onerow row">
+        <div class="col-6 form-group ">
+          <h4><label for="input-stage" class="my-2">Dosage Stage:</label></h4>
+          <div class="input-group input-group-alternative">
+            <select id="input-stage" class="form-control" name="dosageStage" 
+              [(ngModel)]="booking.vaccinationStatus" >
+              <option>Choose vaccination stage</option>
+            <option *ngFor="let stage of stages; let i = index">{{allStages(i)}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6 form-group ">
+          <h4><label class="my-2">Date:</label></h4>
+          <div class="input-group input-group-alternative">
+            <input class="form-control" name="vaccinator"  type="datetime-local"
+              [(ngModel)]="booking.startDate">
+          </div>
+        </div>
+        <button class="btn btn-primary my-4" (click)="updateForMyself()">Update Booking</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="col" *ngIf ="getdata.familyBool">
+  <div class="card bg-secondary shadow">
+    <div class="card-header bg-white border-0">
+      <div class="row rowone">
+        <div class="align-items-center col-8">
+          <h4 class="text-muted font-weight-bold"><small>{{booking._id}}</small></h4>
+          <div>
+            <p>{{booking.address}}</p>
+          </div>
+          <div class="flexyman">
+          <div  *ngFor ="let data of booking.profile">
+            <h4>{{data.firstname + ' ' + data.lastname}}</h4>
+           <p>{{data.phone}}</p>
+          
+        <div class="col" *ngFor="let vacc of data.vaccines">
+          <div class="flexyvacc">
+          <h4 class="text-muted font-weight-bold"><small>{{vacc._id}}</small></h4>
+          <h4>{{vacc.name}}</h4>
+        </div>
+          <div class="form-group row">
+            <div class="col-4">
+              <h4><label class="my-2">Vaccine batch no:</label></h4>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" name="vaccbatchno" placeholder="Vacine batch number" type="text"
+                  [(ngModel)]="vacc.vaccbatchno">
+              </div>
+            </div>
+            <div class="col-4">
+              <h4><label class="my-2">Vaccine batch no:</label></h4>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" name="vaccbatchno" placeholder="Vacine batch number" type="text"
+                  [(ngModel)]="vacc.vaccbatchno">
+              </div>
+            </div>
+            <div class="col-4">
+              <h4><label class="my-2">Date:</label></h4>
+              <div class="input-group input-group-alternative">
+                <input class="form-control" name="dategiven" placeholder="Date given" type="datetime-local"
+                  [(ngModel)]="vacc.dategiven">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <p>{{date(booking.time)}}</p>
+      <h4>Payment Status: {{booking.paymentStatus}}</h4>
+    </div>
+   
       <div class="form-group  onerow row">
         <div class="col-6">
           <h4><label class="my-2">Name of Vaccinator:</label></h4>
