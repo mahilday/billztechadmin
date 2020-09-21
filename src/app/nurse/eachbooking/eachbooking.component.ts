@@ -58,4 +58,21 @@ export class EachbookingComponent implements OnInit {
   }
   booking: any = this.getdata.bookingedit;
   stages = [];
+  setVaccStat(){
+    this.booking.vaccinationStatus = "started"
+  }
+  updateForFamily(){
+    this._http
+    .put(`${environment.baseUrl}/updatenursefam`, this.getdata.bookingedit)
+    .toPromise()
+    .then((res)=>{
+      console.log(res)
+      this.toastr.success("booking update successful", 'Success')
+     
+    })
+    .catch(err => {
+      this.toastr.error("booking update Error, pls try again", 'Error')
+      console.log(err)})
+  }
+  
 }

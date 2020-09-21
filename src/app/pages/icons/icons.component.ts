@@ -43,13 +43,9 @@ export class IconsComponent implements OnInit {
     this.getdata.myselfBool = false;
     this.getdata.familyBool = false;
     this.getdata.corpBool = true;
-    console.log(this.myselfData, this.famData, this.corpData)
   }
   ngOnInit() {
-    this.myselfData = this.getdata.myselfData
-    this.famData = this.getdata.famData
-    this.corpData = this.getdata.corpData
-    this.getdata.getMyself();
+   
       }
   assigned = false
   switchClass(data){

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, NgForm} from '@angular/forms'
 import {AuthService} from '../../services/auth.service'
 import { GetDataService } from '../../services/getdata.service'
+import { RouterService} from '../../services/router.service'
 import {
   Router,
   Event as RouterEvent,
@@ -19,15 +20,17 @@ import {
 })
 export class AdminLayoutComponent implements OnInit {
 
-  ngOnInit() {
-  }
+  
   public showOverlay = true;
 
-  constructor(private router: Router, private _auth: AuthService, private _get: GetDataService) {
-
+  constructor(private router: Router, private routeloader: RouterService, private _auth: AuthService, private _get: GetDataService) {
+   
     router.events.subscribe((event: RouterEvent) => {
       this.navigationInterceptor(event)
     })
+  }
+  ngOnInit() {
+    this._get.getMyself()
   }
   
   // Shows and hides the loading spinner during RouterEvent changes

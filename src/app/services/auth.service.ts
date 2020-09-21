@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router'
 import { NgForm, FormGroup } from '@angular/forms';
 import { environment } from '../../environments/environment';
+import {GetDataService} from './getdata.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   isAuthenticate = false;
-  constructor(private http: HttpClient, private router: Router){
+  constructor(private http: HttpClient, private router: Router, private _get: GetDataService){
   }
   loginDets = {
     bookings: null,
@@ -64,6 +65,8 @@ export class AuthService {
       console.log('not done')
     })
   }
+  admin = false;
+  nurse = false
   isLoading=false
   checkMyselfAssigned: any = null;
   Login(login){
@@ -77,9 +80,13 @@ export class AuthService {
         localStorage.setItem('user', JSON.stringify(login));
         localStorage.setItem('token', res.token);
         if(res.result.role === "admin"){
+          this.admin = true
           this.router.navigateByUrl('/')
+          this._get.getMyself();
         } else{
+          this.nurse = true;
           this.router.navigateByUrl('profile')
+
         }
         this.isLoading=false
         this.loginDets.bookings = res.result.bookings;
@@ -98,21 +105,28 @@ export class AuthService {
         this.corp()
         return this.isAuthenticate
       }).catch((err)=> {
+        this.admin = false;
+        this.nurse = false;
         this.isAuthenticate = false;
         return this.isAuthenticate
       })
   }
   loginLocal : any =()=>{
+    this.isLoading = true
     this.http
       .post(`${environment.baseUrl}/login`, JSON.parse(window.localStorage.getItem('user')))
       .toPromise()
       .then((res: any)=>{
         console.log(res)
         if(res.result.role === "admin"){
+          this.admin = true
           this.router.navigateByUrl('/')
+          this._get.getMyself();
         } else{
+          this.nurse = true
           this.router.navigateByUrl('profile')
         }
+        this.isLoading = false;
         this.loginDets.bookings = res.result.bookings;
         this.loginDets.name = res.result.name;
         this.loginDets.email = res.result.email;
@@ -128,6 +142,9 @@ export class AuthService {
         this.corp()
         return this.isAuthenticate
       }).catch((err)=> {
+        this.nurse = false
+        this.admin = false
+        this.isLoading = false
         this.isAuthenticate = false;
         return this.isAuthenticate
       })

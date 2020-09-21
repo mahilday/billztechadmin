@@ -23,7 +23,8 @@
         </div>
         <div class="table-responsive">
           <!-- Projects table -->
-          <table *ngIf ="myself" class="table align-items-center table-flush">
+          <span class="spinner-border spinner-border-lg" *ngIf ="getdata.loading" role="status" aria-hidden="true"></span>
+          <table *ngIf ="myself && !getdata.loading" class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
                 <th scope="col" class="text-center">ID</th>
@@ -34,7 +35,7 @@
                 <th scope="col" class="text-center">Vaccination Status</th>
               </tr>
               </thead>
-              <tr *ngFor = "let data of myselfData; let i = index" (click)="clickNext(data)">
+              <tr *ngFor = "let data of getdata.myselfData; let i = index" (click)="clickNext(data)">
                 <td class="text-center">{{data._id}}</td>
                 <td class="text-center">{{data.profile.firstname + " " + data.profile.lastname}}</td>
                 <td class="text-center"><ul class="innertablemy"><li class="innerlimy" *ngFor ="let vacc of data.vaccine">{{vacc.name}}</li></ul></td>
@@ -43,7 +44,7 @@
                   <td style="border-radius:10rem;" class="text-center padno  {{switchClass(data)}}">{{data.vaccinationStatus | uppercase}}</td>
               </tr>
               </table>
-              <table *ngIf ="family" class="table align-items-center table-flush">
+              <table *ngIf ="family && !getdata.loading" class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" class="text-center">ID</th>
@@ -54,7 +55,7 @@
                     <th scope="col" class="text-center">Vaccination Status</th>
                   </tr>
                   </thead>
-                  <tr *ngFor = "let data of famData; let i = index" (click)="clickNext(data)">
+                  <tr *ngFor = "let data of getdata.famData; let i = index" (click)="clickNext(data)">
                     <td class="text-center">{{data._id}}</td>
                     <td class="text-center"><ul class="innertablemy"><li class="innerlimy" *ngFor ="let name of data.profile">{{name.firstname + ' ' + name.lastname}}</li></ul></td>
                     <td class="text-center"><ul class="innertablemy"><li class="innerlimy" *ngFor ="let vacc of data.profile">{{vacc.email}}</li></ul></td>
@@ -63,7 +64,7 @@
                     <td class="text-center" class="text-center padno  {{switchClass(data)}}">{{data.vaccinationStatus}}</td>
                   </tr>
                   </table>
-                  <table *ngIf ="corp" class="table align-items-center table-flush">
+                  <table *ngIf ="corp && !getdata.loading" class="table align-items-center table-flush">
                     <thead class="thead-light">
                       <tr>
                         <th scope="col" class="text-center">ID</th>
@@ -73,7 +74,7 @@
                         <th scope="col" class="text-center">Number of Staff</th>
                       </tr>
                       </thead>
-                      <tr *ngFor = "let data of corpData; let i = index" (click)="clickNext(data)">
+                      <tr *ngFor = "let data of getdata.corpData; let i = index" (click)="clickNext(data)">
                         <td class="text-center">{{data._id}}</td>
                         <td class="text-center">{{data.fullname}}</td>
                         <td class="text-center">{{data.email}}</td>

@@ -1,43 +1,64 @@
-.header{
-    z-index:-100000;
+.header {
+  z-index: -100000;
 }
-.cardone{
-    position: relative;
-    transform: translateY(-10%);
-    padding: 5%;
+.cardone {
+  position: relative;
+  transform: translateY(-10%);
+  padding: 5%;
 }
-.rowone{
-    padding:5%;
+.rowone {
+  padding: 7%;
 }
-.col{
-    padding-right:0px;
-    padding-left:0px;
+.col {
+  padding-right: 0px;
+  padding-left: 0px;
 }
-.onerow{
-    display: flex;
-    flex-direction: row;
+.onerow {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-around;
+  align-items: space-around;
+  & > div {
     flex-grow: 1;
-    justify-content: space-around;
-    align-items: space-around;
-    & > div{
-        flex-grow:1;
-        padding:0 6vw;
-        &:hover{
-            flex-grow: 2;
-        }
+    padding: 0 6vw;
+    &:hover {
+      flex-grow: 2;
     }
+  }
 }
-.namevacc> div{
-    padding:0 5vw;
-    flex-grow:1;
+.namevacc > div {
+  padding: 0 5vw;
+  flex-grow: 1;
 }
-.flexyman{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.flexyman {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
 }
-.flexyvacc{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content: space-between;
+.flexyvacc {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  @media only screen and (max-width: 570px){
+    display:block;
+    width:90%;
+    text-align:center;
+    margin:0 auto;
+}
+}
+.bord {
+    margin:5vh 0;
+  &::after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+    padding-top: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+}
+.flexyman > div {
+  width: 100%;
 }

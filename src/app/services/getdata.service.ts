@@ -11,7 +11,7 @@ export class GetDataService{
 
   }
 
-  bookingedit ={}
+  bookingedit: any ={}
 
  myselfBool = true
  familyBool = null
@@ -25,38 +25,48 @@ export class GetDataService{
   myselfData = []
   famData =[]
   corpData = []
+  loading = false
 
   getMyself: any =()=>{
+    this.loading= true
     this.http
     .get(`${environment.baseUrl}/my-form`)
     .toPromise()
     .then((res: any)=>{
       this.myselfData = res.result
+      this.loading= false
     }).catch((err)=> {
       console.log('Error', err)
+      this.loading = false;
     })
     this.getFam();
     this.getCorp();
   }
   
   getFam: any=()=>{
+    this.loading = true;
     this.http
     .get(`${environment.baseUrl}/family-form`)
     .toPromise()
     .then((res: any)=>{
       this.famData = res.result
+      this.loading = false;
     }).catch((err)=> {
       console.log('Error', err)
+      this.loading = false;
     })
   }
   getCorp: any=()=>{
+    this.loading = true;
     this.http
     .get(`${environment.baseUrl}/corporate-form`)
     .toPromise()
     .then((res: any)=>{
       this.corpData = res.result
+      this.loading = false;
     }).catch((err)=> {
       console.log('Error', err)
+      this.loading = false;
     })
   }
 
