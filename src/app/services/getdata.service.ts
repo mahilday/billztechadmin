@@ -2,12 +2,13 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgForm, FormGroup } from '@angular/forms';
 import { environment } from '../../environments/environment';
+import {Router} from '@angular/router'
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetDataService{
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private router: Router){
 
   }
 
@@ -82,5 +83,25 @@ export class GetDataService{
         console.log('Error', err)
       })
   }
-
+  allVacc =[]
+  getAllVaccines=()=>{
+    this.http
+    .get(`${environment.baseUrl}/vaccines`)
+    .toPromise()
+    .then((res: any)=>{
+      this.allVacc = res.result
+      console.log(res)
+    })
+    .catch((err)=>{
+      return err
+    })
+  }
+  eachvaccine = null
+  eachVacc(vaccId){
+    this.eachvaccine = this.allVacc.filter((eachvacc)=>{
+      return eachvacc._id === vaccId
+    })
+    console.log(this.eachvaccine)
+    this.router.navigateByUrl(`all-vaccines/${vaccId}`)
+  }
 }

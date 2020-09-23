@@ -1,0 +1,43 @@
+<div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col">
+            <div class="card shadow border-0 py-5">
+                <div class="myself" style="min-height: 600px; padding: 5%">
+                    <div class="my-3" *ngFor="let each of eachvacc" style="cursor: pointer;">
+                        <h5 class="text-muted">{{each._id}}</h5>
+                        <h4>{{each.name}}</h4>
+                        <p>{{each.description.firstdes}}</p>
+                        <p>{{each.description.givenhowquest}}</p>
+                        <p>{{each.description.givenhowanswer}}</p>
+                        <div *ngFor = "let dose of each.description.dosages">
+                            <h5>{{dose.patient ==="String"? 'Dosages': dose.patient}}</h5>
+                            <ul type ="none">
+                            <li>{{dose.patientdosages.firstdose}}</li>
+                            <li>{{dose.patientdosages.seconddose}}</li>
+                            <li>{{dose.patientdosages.thirddose}}</li>
+                            <li>{{dose.patientdosages.fourthdose}}</li>
+                            <li>{{dose.patientdosages.fifthdose}}</li>
+                        </ul>
+                        </div>
+                        <div>
+                            <h4>All Brands available: </h4>
+                            <section class="d-flex my-3 justify-content-around">
+                            <div *ngFor ="let brand of each.description.brands.brandtype">
+                                <h4>{{brand.name}}</h4>
+                                <input class="form-control" style="border:none" [(ngModel)]="brand.price"><i class="ni ni-edit"></i>
+                            </div>
+                        </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

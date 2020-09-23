@@ -13,7 +13,9 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { VaccinesComponent } from '../../pages/vaccines/vaccines.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {FilterPipe} from '../../pipes/filter.pipe'
+import {FilterPipe} from '../../pipes/filter.pipe';
+import { AllvaccComponent } from '../../pages/allvacc/allvacc.component';
+import { EachvaccComponent } from '../../pages/eachvacc/eachvacc.component';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { ToastrModule } from 'ngx-toastr';
@@ -37,7 +39,9 @@ import {FilterPipe} from '../../pipes/filter.pipe'
     IconsComponent,
     MapsComponent, 
     VaccinesComponent,
-    FilterPipe
+    FilterPipe,
+    AllvaccComponent,
+    EachvaccComponent
   ]
 })
 

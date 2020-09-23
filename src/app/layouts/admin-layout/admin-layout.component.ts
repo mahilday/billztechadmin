@@ -32,6 +32,7 @@ export class AdminLayoutComponent implements OnInit {
   ngOnInit() {
     this._get.getMyself()
     this._get.getNurses();
+    this._get.getAllVaccines()
   }
   
   // Shows and hides the loading spinner during RouterEvent changes

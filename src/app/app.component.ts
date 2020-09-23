@@ -35,6 +35,7 @@ export class AppComponent implements OnInit  {
     })
     this._auth.checkMyselfAssigned()
    
+   
   }
   
   // Shows and hides the loading spinner during RouterEvent changes
