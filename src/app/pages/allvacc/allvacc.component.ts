@@ -14,7 +14,6 @@ export class AllvaccComponent implements OnInit {
   allVacc=[]
 
   ngOnInit(): void {
-    this.allVacc = this._get.allVacc
   }
   getvaccDets(vaccId){
     this._get.eachVacc(vaccId)

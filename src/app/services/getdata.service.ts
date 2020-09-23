@@ -84,16 +84,21 @@ export class GetDataService{
       })
   }
   allVacc =[]
+  vaccloading = false
   getAllVaccines=()=>{
+    this.vaccloading = true
     this.http
     .get(`${environment.baseUrl}/vaccines`)
     .toPromise()
     .then((res: any)=>{
       this.allVacc = res.result
       console.log(res)
+      this.vaccloading = false
     })
     .catch((err)=>{
+      this.vaccloading = false;
       return err
+
     })
   }
   eachvaccine = null

@@ -1,43 +1,111 @@
 <div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
-    <div class="container-fluid">
-        <div class="header-body">
-            <!-- Card stats -->
-        </div>
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
     </div>
+  </div>
 </div>
 <div class="container-fluid mt--7">
-    <div class="row">
-        <div class="col">
-            <div class="card shadow border-0 py-5">
-                <div class="myself" style="min-height: 600px; padding: 5%">
-                    <div class="my-3" *ngFor="let each of eachvacc" style="cursor: pointer;">
-                        <h5 class="text-muted">{{each._id}}</h5>
-                        <h4>{{each.name}}</h4>
-                        <p>{{each.description.firstdes}}</p>
-                        <p>{{each.description.givenhowquest}}</p>
-                        <p>{{each.description.givenhowanswer}}</p>
-                        <div *ngFor = "let dose of each.description.dosages">
-                            <h5>{{dose.patient ==="String"? 'Dosages': dose.patient}}</h5>
-                            <ul type ="none">
-                            <li>{{dose.patientdosages.firstdose}}</li>
-                            <li>{{dose.patientdosages.seconddose}}</li>
-                            <li>{{dose.patientdosages.thirddose}}</li>
-                            <li>{{dose.patientdosages.fourthdose}}</li>
-                            <li>{{dose.patientdosages.fifthdose}}</li>
-                        </ul>
-                        </div>
-                        <div>
-                            <h4>All Brands available: </h4>
-                            <section class="d-flex my-3 justify-content-around">
-                            <div *ngFor ="let brand of each.description.brands.brandtype">
-                                <h4>{{brand.name}}</h4>
-                                <input class="form-control" style="border:none" [(ngModel)]="brand.price"><i class="ni ni-edit"></i>
-                            </div>
-                        </section>
-                        </div>
-                    </div>
-                </div>
+  <div class="row">
+    <div class="col">
+      <div class="card shadow border-0 py-5">
+        <div class="myself" style="min-height: 600px; padding: 5%">
+          <div
+            class="my-3"
+            *ngFor="let each of eachvacc"
+            style="cursor: pointer"
+          >
+            <h5 class="text-muted">{{ each._id }}</h5>
+            <h4>{{ each.name }}</h4>
+            <p>{{ each.description.firstdes }}</p>
+            <p>{{ each.description.givenhowquest }}</p>
+            <p>{{ each.description.givenhowanswer }}</p>
+            <div *ngFor="let dose of each.description.dosages">
+              <h5>
+                {{ dose.patient === "String" ? "Dosages" : dose.patient }}
+              </h5>
+              <ul type="none">
+                <li>{{ dose.patientdosages.firstdose }}</li>
+                <li>{{ dose.patientdosages.seconddose }}</li>
+                <li>{{ dose.patientdosages.thirddose }}</li>
+                <li>{{ dose.patientdosages.fourthdose }}</li>
+                <li>{{ dose.patientdosages.fifthdose }}</li>
+              </ul>
             </div>
+            <div>
+              <h4>All Brands available:</h4>
+              <section class="d-flex my-3 justify-content-around">
+                <div class="d-flex brand" *ngFor="let brand of each.description.brands.brandtype; let i = index">
+                    <span class="del"><i class="fas fa-times-circle" (click)="delBrand(i)"></i></span>
+                    <div class="ml-3">
+                  <h4>{{ brand.name }}</h4>
+                  <section class="d-flex">
+                    <span><i class="fas fa-edit"></i></span
+                    ><input
+                      class="dash"
+                      type="number"
+                      style="
+                        border: none;
+                        width: max-content;
+                        padding: 10px;
+                        height: 2vh;
+                      "
+                      [(ngModel)]="brand.price"
+                    />
+                  </section>
+                </div>
+                </div>
+              </section>
+              <h3 class="my-4">
+                Add brands for vaccine<i class="ni ni-archive-2 mx-3"></i>
+              </h3>
+              <form #brands="ngForm">
+                <div class="form-group row mb-3">
+                  <div class="input-group col input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i class="fas fa-asterisk"></i
+                      ></span>
+                    </div>
+                    <input
+                      class="form-control"
+                      name="name"
+                      placeholder="Brand Name"
+                      [(ngModel)]="brand.name"
+                    />
+                  </div>
+                  <div class="input-group col ml-4 input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i class="ni ni-tag"></i
+                      ></span>
+                    </div>
+                    <input
+                      type="number"
+                      class="form-control"
+                      name="price"
+                      placeholder="Price"
+                      [(ngModel)]="brand.price"
+                    />
+                  </div>
+                </div>
+                <button
+                  class="btn btn-outline-danger btn-sm rounded-top"
+                  (click)="addBrand()"
+                >
+                  Add Brand
+                </button>
+              </form>
+              <button
+                class="btn btn-primary btn-small my-4"
+                (click)="updateVacc()"
+              >
+                update vaccine
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
