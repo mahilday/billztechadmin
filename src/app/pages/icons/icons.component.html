@@ -23,7 +23,9 @@
         </div>
         <div class="table-responsive">
           <!-- Projects table -->
+          <div class="align-items-center justify-content-center">
           <span class="spinner-border spinner-border-lg" *ngIf ="getdata.loading" role="status" aria-hidden="true"></span>
+        </div>
           <table *ngIf ="myself && !getdata.loading" class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>

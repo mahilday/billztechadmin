@@ -153,5 +153,11 @@ export class AuthService {
   loggedIn(){
     return !!localStorage.getItem('token')
   }
+  logout(){
+   
+    window.localStorage.removeItem('user')
+    window.localStorage.removeItem('token')
+    this.router.navigateByUrl('/login')
+  }
   
 }

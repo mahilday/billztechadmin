@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GetDataService } from 'src/app/services/getdata.service';
 
 declare interface RouteInfo {
     path: string;
@@ -27,10 +28,17 @@ export class SidebarComponent implements OnInit {
   public menuItems: any[];
   public isCollapsed = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private _get: GetDataService) {
+   
+   }
 
   ngOnInit() {
+   
+  }
+ 
+  loadItems=()=>{
     this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this._get.loadNav = true
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
    });

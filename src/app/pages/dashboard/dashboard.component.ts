@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
-
+import {GetDataService} from '../../services/getdata.service'
 // core components
 import {
   chartOptions,
@@ -16,50 +16,62 @@ import {
 })
 export class DashboardComponent implements OnInit {
 
-  public datasets: any;
-  public data: any;
-  public salesChart;
-  public clicked: boolean = true;
-  public clicked1: boolean = false;
-
-  constructor() { }
-
+  constructor( private _get: GetDataService) { }
+  allBookings = []
+  todayBookingarr = []
+  weekBookingarr = []
+  monthBookingarr =[]
+  today = true;
+  week = false;
+  month = false;
+  todayBool(){
+    this.today = true;
+    this.week = false;
+    this.month = false;
+  }
+  weekBool(){
+    this.today = false;
+    this.week = true;
+    this.month = false;
+  }
+  monthBool(){
+    this.today = false;
+    this.week = false;
+    this.month = true;
+  }
   ngOnInit() {
-
-    this.datasets = [
-      [0, 20, 10, 30, 15, 40, 20, 60, 60],
-      [0, 20, 5, 25, 10, 30, 15, 40, 40]
-    ];
-    this.data = this.datasets[0];
-
-
-    var chartOrders = document.getElementById('chart-orders');
-
-    parseOptions(Chart, chartOptions());
-
-
-    var ordersChart = new Chart(chartOrders, {
-      type: 'bar',
-      options: chartExample2.options,
-      data: chartExample2.data
-    });
-
-    var chartSales = document.getElementById('chart-sales');
-
-    this.salesChart = new Chart(chartSales, {
-			type: 'line',
-			options: chartExample1.options,
-			data: chartExample1.data
-		});
+    this.today = true;
+    this.week = false;
+    this.month = false;
   }
-
-
-
-
-
-  public updateOptions() {
-    this.salesChart.data.datasets[0].data = this.data;
-    this.salesChart.update();
+  
+  ArrLength = null
+  checkForBookings=()=>{
+    let newBookingArr = this._get.myselfData.concat(this._get.famData, this._get.corpData)
+    this.allBookings = this._get.myselfData.concat(this._get.famData, this._get.corpData)
+    this.ArrLength = newBookingArr.length
+    this.weekBookings()
+    this.todayBookings();
+    this.monthBookings();
+    return this.ArrLength
   }
+ todayBookings(){
+  this.todayBookingarr =this.allBookings.filter(function (e) {
+    return new Date(e.timestamp).toLocaleDateString() === new Date().toLocaleDateString();
+});
+ }
+ weekBookings(){
+  this.weekBookingarr =this.allBookings.filter(function (e) {
+    return new Date(e.timestamp).toLocaleDateString() >= new Date(1600215998767).toLocaleDateString();
+});
+ }
+ monthBookings(){
+  this.monthBookingarr =this.allBookings.filter(function (e) {
+    return new Date(e.timestamp).toLocaleDateString() >= new Date(1598229251593).toLocaleDateString();
+});
+ }
+ formatDate(date){
+   return new Date(date).toLocaleDateString()
+ }
 
 }

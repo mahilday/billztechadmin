@@ -8,8 +8,9 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-                  <span class="h2 font-weight-bold mb-0">350,897</span>
+                  
+                  <h5 class="card-title text-uppercase text-muted mb-0">All Bookings</h5>
+                  <span class="h2 font-weight-bold mb-0">{{checkForBookings()}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -17,10 +18,6 @@
                   </div>
                 </div>
               </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p>
             </div>
           </div>
         </div>
@@ -29,40 +26,15 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                  <span class="h2 font-weight-bold mb-0">2,356</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">All Nurses</h5>
+                  <span class="h2 font-weight-bold mb-0">{{_get.nurses}}</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                    <i class="fas fa-chart-pie"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                <span class="text-nowrap">Since last week</span>
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-6">
-          <div class="card card-stats mb-4 mb-xl-0">
-            <div class="card-body">
-              <div class="row">
-                <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                  <span class="h2 font-weight-bold mb-0">924</span>
-                </div>
-                <div class="col-auto">
-                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
                     <i class="fas fa-users"></i>
                   </div>
                 </div>
               </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                <span class="text-nowrap">Since yesterday</span>
-              </p>
             </div>
           </div>
         </div>
@@ -71,8 +43,25 @@
             <div class="card-body">
               <div class="row">
                 <div class="col">
-                  <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                  <span class="h2 font-weight-bold mb-0">49,65%</span>
+                  <h5 class="card-title text-uppercase text-muted mb-0">Bookings started</h5>
+                  <span class="h2 font-weight-bold mb-0">0</span>
+                </div>
+                <div class="col-auto">
+                  <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                    <i class="fas fa-chart-pie"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Finished bookings</h5>
+                  <span class="h2 font-weight-bold mb-0">0</span>
                 </div>
                 <div class="col-auto">
                   <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -80,10 +69,6 @@
                   </div>
                 </div>
               </div>
-              <p class="mt-3 mb-0 text-muted text-sm">
-                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                <span class="text-nowrap">Since last month</span>
-              </p>
             </div>
           </div>
         </div>
@@ -93,220 +78,114 @@
 </div>
 <div class="container-fluid mt--7">
   <div class="row mt-5">
-    <div class="col-xl-8 mb-5 mb-xl-0">
+    <div class="col-xl-12 mb-5 mb-xl-0">
       <div class="card shadow">
         <div class="card-header border-0">
           <div class="row align-items-center">
             <div class="col">
-              <h3 class="mb-0">Page visits</h3>
+              <h3 class="mb-0">Bookings</h3>
             </div>
             <div class="col text-right">
-              <a href="#!" class="btn btn-sm btn-primary">See all</a>
+              <a (click) ="todayBool()" class="btn text-white time btn-sm btn-primary" [ngClass]="today?'active bg-gradient-danger': ''">Today</a>
+              <a (click) ="weekBool()" class="btn text-white time btn-sm btn-primary" [ngClass]="week?'active bg-gradient-danger': ''">1 week</a>
+              <a (click) ="monthBool()" class="btn text-white time btn-sm btn-primary" [ngClass]="month?'active bg-gradient-danger': ''">30 days</a>
             </div>
           </div>
+          <hr/>
         </div>
         <div class="table-responsive">
           <!-- Projects table -->
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">Page name</th>
-                <th scope="col">Visitors</th>
-                <th scope="col">Unique users</th>
-                <th scope="col">Bounce rate</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">
-                  /argon/
-                </th>
-                <td>
-                  4,569
-                </td>
-                <td>
-                  340
-                </td>
-                <td>
-                  <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  /argon/index.html
-                </th>
-                <td>
-                  3,985
-                </td>
-                <td>
-                  319
-                </td>
-                <td>
-                  <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  /argon/charts.html
-                </th>
-                <td>
-                  3,513
-                </td>
-                <td>
-                  294
-                </td>
-                <td>
-                  <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  /argon/tables.html
-                </th>
-                <td>
-                  2,050
-                </td>
-                <td>
-                  147
-                </td>
-                <td>
-                  <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  /argon/profile.html
-                </th>
-                <td>
-                  1,795
-                </td>
-                <td>
-                  190
-                </td>
-                <td>
-                  <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="col-xl-4">
-      <div class="card shadow">
-        <div class="card-header border-0">
-          <div class="row align-items-center">
-            <div class="col">
-              <h3 class="mb-0">Social traffic</h3>
+          <div *ngIf ="today" class="align-items-center bookingdates ">
+            <div class=" flexy row" *ngFor = "let today of todayBookingarr">
+              <div class="col-10">
+              <b>{{today._id}}</b>
+              <h4>Type: {{today.type}}</h4>
+              <div *ngIf="today.type === 'family'">
+                <h3>{{today.place}}</h3>
+                <h4>{{today.address}}</h4>
+                <div *ngFor="let data of today.profile">
+                  <h5>{{data.firstname + ' ' + data.lastname}}</h5>
+                </div>
+                <h5 class="badge badge-pill badge-primary mr-2">{{today.paymentStatus}}</h5>
+                <h5 class="badge badge-pill badge-info">{{today.vaccinationStatus}}</h5>
+              </div>
+              <div *ngIf="today.type === 'corporate'">
+                <h3>Name: {{today.fullname}}</h3>
+                <h4>Company Name: {{today.companyDetails.companyname}}</h4>
+              </div>
+              <div *ngIf="today.type === 'individual'">
+                <h3>{{today.place}}</h3>
+                <h4>{{today.profile.firstname + ' ' + today.profile.lastname}}</h4>
+                <h5 class="badge badge-pill badge-primary mr-2">{{today.paymentStatus}}</h5>
+                <h5 class="badge badge-pill badge-info">{{today.vaccinationStatus}}</h5>
+              </div>
             </div>
-            <div class="col text-right">
-              <a href="#!" class="btn btn-sm btn-primary">See all</a>
+            <div class="col-2">{{formatDate(today.timestamp)}}</div>
+              <hr/>
             </div>
           </div>
-        </div>
-        <div class="table-responsive">
-          <!-- Projects table -->
-          <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">Referral</th>
-                <th scope="col">Visitors</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">
-                  Facebook
-                </th>
-                <td>
-                  1,480
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <span class="mr-2">60%</span>
-                    <div>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  Facebook
-                </th>
-                <td>
-                  5,480
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <span class="mr-2">70%</span>
-                    <div>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  Google
-                </th>
-                <td>
-                  4,807
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <span class="mr-2">80%</span>
-                    <div>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  Instagram
-                </th>
-                <td>
-                  3,678
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <span class="mr-2">75%</span>
-                    <div>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  twitter
-                </th>
-                <td>
-                  2,645
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <span class="mr-2">30%</span>
-                    <div>
-                      <div class="progress">
-                        <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div *ngIf ="week" class=" align-items-center bookingdates">
+            <div class="flexy row" *ngFor = "let week of weekBookingarr">
+              <div class="col-10">
+              <b>{{week._id}}</b>
+              <h4>Type: {{week.type}}</h4>
+              <div *ngIf="week.type === 'family'">
+              <h3>{{week.place}}</h3>
+              <h4>{{week.address}}</h4>
+              <div *ngFor="let data of week.profile">
+                <h5>{{data.firstname + ' ' + data.lastname}}</h5>
+              </div>
+              <h5 class="badge badge-pill badge-primary mr-2">{{week.paymentStatus}}</h5>
+              <h5 class="badge badge-pill badge-info">{{week.vaccinationStatus}}</h5>
+            </div>
+            <div *ngIf="week.type === 'corporate'">
+              <h3>Name: {{week.fullname}}</h3>
+              <h4>Company Name: {{week.companyDetails.companyname}}</h4>
+            </div>
+            <div *ngIf="week.type === 'individual'">
+              <h3>{{week.place}}</h3>
+              <h4>{{week.profile.firstname + ' ' + week.profile.lastname}}</h4>
+              <h5 class="badge badge-pill badge-primary mr-2">{{week.paymentStatus}}</h5>
+              <h5 class="badge badge-pill badge-info">{{week.vaccinationStatus}}</h5>
+            </div>
+          </div>
+          <div class="col-2">
+            {{formatDate(week.timestamp)}}
+          </div>
+              <hr/>
+            </div>
+          </div>
+          <div *ngIf ="month" class=" align-items-center bookingdates ">
+            <div class=" flexy row" *ngFor = "let month of monthBookingarr">
+              <div class="col-10">
+              <b>{{month._id}}</b>
+              <h4>Type: {{month.type}}</h4>
+              <div *ngIf="month.type === 'family'">
+                <h3>{{month.place}}</h3>
+                <h4>{{month.address}}</h4>
+                <div *ngFor="let data of month.profile">
+                  <h5>{{data.firstname + ' ' + data.lastname}}</h5>
+                </div>
+                <h5 class="badge badge-pill badge-primary mr-2">{{month.paymentStatus}}</h5>
+                <h5 class="badge badge-pill badge-info">{{month.vaccinationStatus}}</h5>
+              </div>
+              <div *ngIf="month.type === 'corporate'">
+                <h3>Name: {{month.fullname}}</h3>
+                <h4>Company Name: {{month.companyDetails.companyname}}</h4>
+              </div>
+              <div *ngIf="month.type === 'individual'">
+                <h3>{{month.place}}</h3>
+                <h4>{{month.profile.firstname + ' ' + month.profile.lastname}}</h4>
+                <h5 class="badge badge-pill badge-primary mr-2">{{month.paymentStatus}}</h5>
+                <h5 class="badge badge-pill badge-info">{{month.vaccinationStatus}}</h5>
+              </div>
+            </div>
+            <div class="col-2">
+              {{formatDate(month.timestamp)}}
+            </div>
+              <hr/>
+            </div>
+          </div>
         </div>
       </div>
     </div>

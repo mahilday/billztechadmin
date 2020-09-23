@@ -14,8 +14,8 @@ export class GetDataService{
   bookingedit: any ={}
 
  myselfBool = true
- familyBool = null
- corpBool = null
+ familyBool = false
+ corpBool = false
  assigned = false
 
   Myself={}
@@ -56,6 +56,7 @@ export class GetDataService{
       this.loading = false;
     })
   }
+  loadNav = false
   getCorp: any=()=>{
     this.loading = true;
     this.http
@@ -68,6 +69,18 @@ export class GetDataService{
       console.log('Error', err)
       this.loading = false;
     })
+  }
+  nurses = null
+  getNurses =()=>{
+    this.http
+      .get(`${environment.baseUrl}/allnurses`)
+      .toPromise()
+      .then((res: any)=>{
+        this.nurses = res.result.length
+      })
+      .catch((err)=>{
+        console.log('Error', err)
+      })
   }
 
 }

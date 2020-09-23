@@ -1,0 +1,26 @@
+.col{
+    @media screen and (min-width:1300px){
+        height: 8vh;
+    }
+   
+}
+.bookingdates{
+    min-height:20vh;
+    padding-left:5%;
+}
+.flexy{
+   border-bottom: 1px solid #eee;
+   padding:15px 0;
+}
+.time{
+    outline: none;
+    border: none;
+    padding: 6px 9px;
+    opacity: .9;
+    transition: all .4s ease-in;
+    &:active, &:hover, &:focus{
+        outline:none;
+        padding:6px 12px;
+        opacity:1;
+    }
+}
